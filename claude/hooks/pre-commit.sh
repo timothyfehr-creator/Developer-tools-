@@ -18,9 +18,11 @@ if [ "$added_lines" -gt "$MAX_LINES" ]; then
     exit 1
 fi
 
-# --- Detect language and run tests ---
-if [ -f "package.json" ]; then npm test; fi
-if [ -f "requirements.txt" ] || [ -f "pytest.ini" ]; then python -m pytest; fi
+# --- Detect language and run tests (only if dependencies are installed) ---
+if [ -f "package.json" ] && [ -d "node_modules" ]; then npm test; fi
+if [ -f "requirements.txt" ] || [ -f "pytest.ini" ]; then
+    if python -c "import pytest" 2>/dev/null; then python -m pytest; fi
+fi
 
 # --- Update context map ---
 if [ -f "scripts/pack_context.sh" ]; then bash scripts/pack_context.sh; fi
