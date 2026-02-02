@@ -11,6 +11,7 @@ Review the last commit against CONTRIBUTING.md standards.
 
 - [ ] Commit message follows conventional format (`type:` or `type(scope):` description)
 - [ ] Commit message subject is under 72 characters
+- [ ] Commit is under 500 lines added and 8 files changed
 - [ ] No commented-out code added
 - [ ] No unused imports added
 - [ ] No hardcoded secrets or credentials
