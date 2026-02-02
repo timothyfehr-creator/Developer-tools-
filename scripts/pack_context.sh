@@ -9,15 +9,10 @@ if command -v tree &>/dev/null; then
     tree -I "$EXCLUDE" --dirsfirst > docs/context_map.txt
 else
     find . \
-        -not -path '*/.git/*' \
-        -not -path '*/node_modules/*' \
-        -not -path '*/__pycache__/*' \
-        -not -path '*/.venv/*' \
-        -not -path '*/venv/*' \
-        -not -path '*/dist/*' \
-        -not -path '*/build/*' \
-        -not -path '*/.next/*' \
-        -not -path '*/.egg-info/*' \
+        \( -path './.git' -o -path './node_modules' -o -path './__pycache__' \
+           -o -path './.venv' -o -path './venv' -o -path './dist' \
+           -o -path './build' -o -path './.next' -o -path './.egg-info' \) -prune \
+        -o -print \
         | sort > docs/context_map.txt
 fi
 

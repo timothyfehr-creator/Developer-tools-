@@ -10,6 +10,15 @@ sedi() {
   fi
 }
 
+# --- Safe sed replacement (escapes \, &, |) ---
+escape_sed_repl() {
+  local s="$1"
+  s=${s//\\/\\\\}
+  s=${s//&/\\&}
+  s=${s//|/\\|}
+  printf '%s' "$s"
+}
+
 # --- Locate templates (supports curl-piped usage) ---
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLEANUP=false
@@ -34,11 +43,29 @@ if [ -z "$TARGET_DIR" ]; then
     read -rp "Target directory: " TARGET_DIR
 fi
 
+if [ -z "$TARGET_DIR" ]; then
+    echo "Error: target directory cannot be empty."
+    exit 1
+fi
+
 # Expand ~ and make absolute
 TARGET_DIR="${TARGET_DIR/#\~/$HOME}"
-TARGET_DIR="$(cd "$(dirname "$TARGET_DIR")" 2>/dev/null && pwd)/$(basename "$TARGET_DIR")" || TARGET_DIR="$(pwd)/$TARGET_DIR"
+if [[ "$TARGET_DIR" != /* ]]; then
+    TARGET_DIR="$(pwd)/$TARGET_DIR"
+fi
+TARGET_DIR="${TARGET_DIR%/}"
+
+# Canonicalize if realpath is available
+if command -v realpath >/dev/null 2>&1; then
+    TARGET_DIR="$(realpath -m "$TARGET_DIR")"
+fi
 
 read -rp "Project name: " PROJECT_NAME
+if [ -z "$PROJECT_NAME" ]; then
+    echo "Error: project name cannot be empty."
+    exit 1
+fi
+
 read -rp "Language (python/typescript/both) [python]: " LANGUAGE
 LANGUAGE="${LANGUAGE:-python}"
 
@@ -53,6 +80,20 @@ read -rp "Test command [$DEFAULT_TEST]: " TEST_COMMAND
 TEST_COMMAND="${TEST_COMMAND:-$DEFAULT_TEST}"
 
 read -rp "Main entry point: " ENTRY_POINT
+if [ -z "$ENTRY_POINT" ]; then
+    echo "Error: entry point cannot be empty."
+    exit 1
+fi
+
+# --- Warn if target is non-empty ---
+if [ -d "$TARGET_DIR" ] && [ "$(ls -A "$TARGET_DIR" 2>/dev/null)" ]; then
+    echo "Warning: $TARGET_DIR is not empty."
+    read -rp "Continue and overwrite existing files? [y/N]: " CONFIRM
+    if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
+        echo "Aborted."
+        exit 0
+    fi
+fi
 
 # --- Create target directory ---
 mkdir -p "$TARGET_DIR"
@@ -80,8 +121,9 @@ if [ "$LANGUAGE" = "python" ] || [ "$LANGUAGE" = "both" ]; then
     cp "$SCRIPT_DIR/templates/python/setup_venv.sh" "$TARGET_DIR/setup_venv.sh"
     chmod +x "$TARGET_DIR/setup_venv.sh"
     mkdir -p "$TARGET_DIR/tests"
-    # Language-specific CI overwrites common CI
-    cp "$SCRIPT_DIR/templates/python/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/ci.yml"
+    if [ "$LANGUAGE" = "python" ]; then
+        cp "$SCRIPT_DIR/templates/python/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/ci.yml"
+    fi
 fi
 
 if [ "$LANGUAGE" = "typescript" ] || [ "$LANGUAGE" = "both" ]; then
@@ -89,16 +131,24 @@ if [ "$LANGUAGE" = "typescript" ] || [ "$LANGUAGE" = "both" ]; then
     cp "$SCRIPT_DIR/templates/typescript/tsconfig.json" "$TARGET_DIR/tsconfig.json"
     cp "$SCRIPT_DIR/templates/typescript/vitest.config.ts" "$TARGET_DIR/vitest.config.ts"
     mkdir -p "$TARGET_DIR/src"
-    # Language-specific CI overwrites common CI (typescript wins if "both")
-    cp "$SCRIPT_DIR/templates/typescript/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/ci.yml"
+    if [ "$LANGUAGE" = "typescript" ]; then
+        cp "$SCRIPT_DIR/templates/typescript/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/ci.yml"
+    fi
 fi
 
-# --- 4. Generate CLAUDE.md from template ---
+# For "both", install separate CI workflows for each language
+if [ "$LANGUAGE" = "both" ]; then
+    cp "$SCRIPT_DIR/templates/python/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/python-ci.yml"
+    cp "$SCRIPT_DIR/templates/typescript/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/node-ci.yml"
+    rm -f "$TARGET_DIR/.github/workflows/ci.yml"
+fi
+
+# --- 4. Generate CLAUDE.md from template (safe substitution) ---
 cp "$SCRIPT_DIR/templates/common/CLAUDE.md.template" "$TARGET_DIR/CLAUDE.md"
-sedi "s/{{PROJECT_NAME}}/$PROJECT_NAME/g" "$TARGET_DIR/CLAUDE.md"
-sedi "s/{{LANGUAGE}}/$LANGUAGE/g" "$TARGET_DIR/CLAUDE.md"
-sedi "s|{{TEST_COMMAND}}|$TEST_COMMAND|g" "$TARGET_DIR/CLAUDE.md"
-sedi "s|{{ENTRY_POINT}}|$ENTRY_POINT|g" "$TARGET_DIR/CLAUDE.md"
+sedi "s|{{PROJECT_NAME}}|$(escape_sed_repl "$PROJECT_NAME")|g" "$TARGET_DIR/CLAUDE.md"
+sedi "s|{{LANGUAGE}}|$(escape_sed_repl "$LANGUAGE")|g" "$TARGET_DIR/CLAUDE.md"
+sedi "s|{{TEST_COMMAND}}|$(escape_sed_repl "$TEST_COMMAND")|g" "$TARGET_DIR/CLAUDE.md"
+sedi "s|{{ENTRY_POINT}}|$(escape_sed_repl "$ENTRY_POINT")|g" "$TARGET_DIR/CLAUDE.md"
 
 # --- 5. Copy CLAUDE.md content into .cursorrules ---
 cp "$TARGET_DIR/CLAUDE.md" "$TARGET_DIR/.cursorrules"
@@ -129,10 +179,10 @@ echo "  Entry:      $ENTRY_POINT"
 echo ""
 echo "Next steps:"
 echo "  cd $TARGET_DIR"
-echo "  git add -A && git commit -m 'chore: initial scaffold'"
 if [ "$LANGUAGE" = "python" ] || [ "$LANGUAGE" = "both" ]; then
     echo "  bash setup_venv.sh"
 fi
 if [ "$LANGUAGE" = "typescript" ] || [ "$LANGUAGE" = "both" ]; then
     echo "  npm install"
 fi
+echo "  git add -A && git commit -m 'chore: initial scaffold'"

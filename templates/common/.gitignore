@@ -9,6 +9,11 @@ build/
 venv/
 .eggs/
 *.egg
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
 
 # Node / TypeScript
 node_modules/
@@ -23,6 +28,13 @@ build/
 .env.*.local
 .env.production
 .env.staging
+.envrc
+.npmrc
+
+# Key material
+*.pem
+*.key
+*.p12
 
 # IDE
 .vscode/

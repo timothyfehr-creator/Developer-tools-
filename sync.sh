@@ -9,7 +9,14 @@ echo ""
 
 # --- Update CONTRIBUTING.md ---
 if [ -f "$TARGET_DIR/CONTRIBUTING.md" ]; then
-    REMOTE_CONTRIBUTING=$(curl -sL "$REMOTE_BASE/CONTRIBUTING.md")
+    REMOTE_CONTRIBUTING="$(curl -fsSL "$REMOTE_BASE/CONTRIBUTING.md")" \
+        || { echo "Failed to download CONTRIBUTING.md"; exit 1; }
+
+    if [ -z "$REMOTE_CONTRIBUTING" ]; then
+        echo "Remote CONTRIBUTING.md was empty; aborting."
+        exit 1
+    fi
+
     LOCAL_CONTRIBUTING=$(cat "$TARGET_DIR/CONTRIBUTING.md")
 
     if [ "$REMOTE_CONTRIBUTING" = "$LOCAL_CONTRIBUTING" ]; then
@@ -28,7 +35,8 @@ if [ -f "$TARGET_DIR/CONTRIBUTING.md" ]; then
     fi
 else
     echo "No CONTRIBUTING.md found — downloading."
-    curl -sL "$REMOTE_BASE/CONTRIBUTING.md" -o "$TARGET_DIR/CONTRIBUTING.md"
+    curl -fsSL "$REMOTE_BASE/CONTRIBUTING.md" -o "$TARGET_DIR/CONTRIBUTING.md" \
+        || { echo "Failed to download CONTRIBUTING.md"; exit 1; }
     echo "CONTRIBUTING.md created."
 fi
 

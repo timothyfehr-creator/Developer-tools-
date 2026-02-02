@@ -9,7 +9,7 @@ Review the last commit against CONTRIBUTING.md standards.
 2. Read `CONTRIBUTING.md` for the project standards.
 3. Check every item on this checklist against the diff:
 
-- [ ] Commit message follows conventional format (`type(scope): description`)
+- [ ] Commit message follows conventional format (`type:` or `type(scope):` description)
 - [ ] Commit message subject is under 72 characters
 - [ ] No commented-out code added
 - [ ] No unused imports added
