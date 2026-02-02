@@ -206,4 +206,5 @@ fi
 if [ "$LANGUAGE" = "typescript" ] || [ "$LANGUAGE" = "both" ]; then
     echo "  npm install"
 fi
-echo "  git add . && git commit -m 'chore: initial scaffold'"
+echo "  git add . && git commit --no-verify -m 'chore: initial scaffold'"
+echo "  # --no-verify skips the pre-commit hook's file-count limit for this initial commit"
