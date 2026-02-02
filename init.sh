@@ -111,7 +111,6 @@ cp "$SCRIPT_DIR/templates/common/.coderabbit.yaml" "$TARGET_DIR/.coderabbit.yaml
 cp "$SCRIPT_DIR/templates/common/.env.example" "$TARGET_DIR/.env.example"
 
 mkdir -p "$TARGET_DIR/.github/workflows"
-cp "$SCRIPT_DIR/templates/common/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/ci.yml"
 
 mkdir -p "$TARGET_DIR/docs/memory"
 cp "$SCRIPT_DIR/templates/common/docs/memory/active_context.md" "$TARGET_DIR/docs/memory/active_context.md"
@@ -125,9 +124,6 @@ if [ "$LANGUAGE" = "python" ] || [ "$LANGUAGE" = "both" ]; then
     cp "$SCRIPT_DIR/templates/python/setup_venv.sh" "$TARGET_DIR/setup_venv.sh"
     chmod +x "$TARGET_DIR/setup_venv.sh"
     mkdir -p "$TARGET_DIR/tests"
-    if [ "$LANGUAGE" = "python" ]; then
-        cp "$SCRIPT_DIR/templates/python/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/ci.yml"
-    fi
 fi
 
 if [ "$LANGUAGE" = "typescript" ] || [ "$LANGUAGE" = "both" ]; then
@@ -135,17 +131,18 @@ if [ "$LANGUAGE" = "typescript" ] || [ "$LANGUAGE" = "both" ]; then
     cp "$SCRIPT_DIR/templates/typescript/tsconfig.json" "$TARGET_DIR/tsconfig.json"
     cp "$SCRIPT_DIR/templates/typescript/vitest.config.ts" "$TARGET_DIR/vitest.config.ts"
     mkdir -p "$TARGET_DIR/src"
-    if [ "$LANGUAGE" = "typescript" ]; then
-        cp "$SCRIPT_DIR/templates/typescript/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/ci.yml"
-    fi
 fi
 
-# For "both", install separate CI workflows for each language
-if [ "$LANGUAGE" = "both" ]; then
-    cp "$SCRIPT_DIR/templates/python/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/python-ci.yml"
-    cp "$SCRIPT_DIR/templates/typescript/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/node-ci.yml"
-    rm -f "$TARGET_DIR/.github/workflows/ci.yml"
-fi
+# --- CI workflows: single language gets ci.yml, "both" gets separate files ---
+case "$LANGUAGE" in
+    python)
+        cp "$SCRIPT_DIR/templates/python/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/ci.yml" ;;
+    typescript)
+        cp "$SCRIPT_DIR/templates/typescript/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/ci.yml" ;;
+    both)
+        cp "$SCRIPT_DIR/templates/python/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/python-ci.yml"
+        cp "$SCRIPT_DIR/templates/typescript/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/node-ci.yml" ;;
+esac
 
 # --- 4. Generate CLAUDE.md from template (safe substitution) ---
 cp "$SCRIPT_DIR/templates/common/CLAUDE.md.template" "$TARGET_DIR/CLAUDE.md"
