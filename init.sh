@@ -188,4 +188,4 @@ fi
 if [ "$LANGUAGE" = "typescript" ] || [ "$LANGUAGE" = "both" ]; then
     echo "  npm install"
 fi
-echo "  git add -A && git commit -m 'chore: initial scaffold'"
+echo "  git add . && git commit -m 'chore: initial scaffold'"
