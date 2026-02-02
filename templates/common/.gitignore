@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.eggs/
+*.egg
+
+# Node / TypeScript
+node_modules/
+dist/
+build/
+.next/
+*.tsbuildinfo
+
+# Environment / Secrets
+.env
+.env.local
+.env.*.local
+.env.production
+.env.staging
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# AI Artifacts
+docs/context_map.txt

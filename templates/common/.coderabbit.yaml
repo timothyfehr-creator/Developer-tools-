@@ -1,0 +1,21 @@
+reviews:
+  auto_review:
+    enabled: true
+  path_filters: []
+  tools:
+    shellcheck:
+      enabled: true
+
+chat:
+  auto_reply: true
+
+instructions:
+  rules:
+    - "Flag any PR that adds more than 1000 lines changed"
+    - "Flag any single commit that adds more than 500 lines"
+    - "Flag any .env file included in the PR — these must never be committed"
+    - "Flag unused imports, commented-out code blocks, and dead code"
+    - "Verify error handling: no silent error swallowing (except: pass)"
+    - "Check that frontend and backend types match if both are modified"
+    - "Verify new dependencies are justified and version-pinned"
+    - "Ensure tests exist for new logic and cover error paths"

@@ -1,0 +1,22 @@
+# CLAUDE.md
+
+## Project: {{PROJECT_NAME}}
+
+### Tech Stack
+- Language: {{LANGUAGE}}
+- Entry point: {{ENTRY_POINT}}
+
+### Commands
+- Run tests: `{{TEST_COMMAND}}`
+- Start dev: (fill in)
+- Pack context: `bash scripts/pack_context.sh`
+
+### Architecture
+(Describe your project structure here — or run `bash scripts/pack_context.sh`
+and reference `docs/context_map.txt`)
+
+### Conventions
+- Follow CONTRIBUTING.md for all commit and code standards
+- Update `docs/memory/active_context.md` at the end of every session
+- Log architectural decisions in `docs/memory/decisions.md`
+- (Add project-specific conventions here)
