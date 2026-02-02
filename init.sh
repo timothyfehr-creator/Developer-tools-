@@ -21,13 +21,25 @@ escape_sed_repl() {
 
 # --- Locate templates (supports curl-piped usage) ---
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Source shared lib (may not exist yet in curl-piped usage)
+if [ -f "$SCRIPT_DIR/scripts/lib.sh" ]; then
+    source "$SCRIPT_DIR/scripts/lib.sh"
+fi
+
 CLEANUP=false
 if [ ! -d "$SCRIPT_DIR/templates" ]; then
     TEMP_DIR=$(mktemp -d)
     echo "Downloading templates..."
-    git clone --depth 1 https://github.com/timothyfehr-creator/Developer-tools- "$TEMP_DIR" >/dev/null 2>&1
+    if type git_clone_with_retry &>/dev/null; then
+        git_clone_with_retry "https://github.com/timothyfehr-creator/Developer-tools-" "$TEMP_DIR"
+    else
+        git clone --depth 1 https://github.com/timothyfehr-creator/Developer-tools- "$TEMP_DIR" >/dev/null 2>&1
+    fi
     SCRIPT_DIR="$TEMP_DIR"
     CLEANUP=true
+    # Source lib from cloned copy
+    source "$SCRIPT_DIR/scripts/lib.sh"
 fi
 
 cleanup() {

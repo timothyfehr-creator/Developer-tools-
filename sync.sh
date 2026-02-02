@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/scripts/lib.sh"
+
 REMOTE_BASE="https://raw.githubusercontent.com/timothyfehr-creator/Developer-tools-/main/templates/common"
 TARGET_DIR="${1:-.}"
 
@@ -9,7 +12,7 @@ echo ""
 
 # --- Update CONTRIBUTING.md ---
 if [ -f "$TARGET_DIR/CONTRIBUTING.md" ]; then
-    REMOTE_CONTRIBUTING="$(curl -fsSL "$REMOTE_BASE/CONTRIBUTING.md")" \
+    REMOTE_CONTRIBUTING="$(fetch_with_retry "$REMOTE_BASE/CONTRIBUTING.md")" \
         || { echo "Failed to download CONTRIBUTING.md"; exit 1; }
 
     if [ -z "$REMOTE_CONTRIBUTING" ]; then
@@ -35,7 +38,7 @@ if [ -f "$TARGET_DIR/CONTRIBUTING.md" ]; then
     fi
 else
     echo "No CONTRIBUTING.md found — downloading."
-    curl -fsSL "$REMOTE_BASE/CONTRIBUTING.md" -o "$TARGET_DIR/CONTRIBUTING.md" \
+    fetch_with_retry "$REMOTE_BASE/CONTRIBUTING.md" > "$TARGET_DIR/CONTRIBUTING.md" \
         || { echo "Failed to download CONTRIBUTING.md"; exit 1; }
     echo "CONTRIBUTING.md created."
 fi
