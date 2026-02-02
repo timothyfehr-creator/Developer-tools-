@@ -18,6 +18,6 @@ by the pre-commit hook)
 
 ### Conventions
 - Follow CONTRIBUTING.md for all commit and code standards
-- Update `docs/memory/active_context.md` at the end of every session
-- Log architectural decisions in `docs/memory/decisions.md`
+- Consider updating `docs/memory/active_context.md` when context would be useful for the next session
+- Log architectural decisions in `docs/memory/decisions.md` when significant choices are made
 - (Add project-specific conventions here)
