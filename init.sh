@@ -60,9 +60,23 @@ if realpath -m / >/dev/null 2>&1; then
     TARGET_DIR="$(realpath -m "$TARGET_DIR")"
 fi
 
+# --- Warn if target is non-empty (before collecting remaining prompts) ---
+if [ -d "$TARGET_DIR" ] && [ "$(ls -A "$TARGET_DIR" 2>/dev/null)" ]; then
+    echo "Warning: $TARGET_DIR is not empty."
+    read -rp "Continue and overwrite existing files? [y/N]: " CONFIRM
+    if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
+        echo "Aborted."
+        exit 0
+    fi
+fi
+
 read -rp "Project name: " PROJECT_NAME
 if [ -z "$PROJECT_NAME" ]; then
     echo "Error: project name cannot be empty."
+    exit 1
+fi
+if [[ ! "$PROJECT_NAME" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+    echo "Error: project name must contain only letters, numbers, hyphens, and underscores."
     exit 1
 fi
 
@@ -83,16 +97,6 @@ read -rp "Main entry point: " ENTRY_POINT
 if [ -z "$ENTRY_POINT" ]; then
     echo "Error: entry point cannot be empty."
     exit 1
-fi
-
-# --- Warn if target is non-empty ---
-if [ -d "$TARGET_DIR" ] && [ "$(ls -A "$TARGET_DIR" 2>/dev/null)" ]; then
-    echo "Warning: $TARGET_DIR is not empty."
-    read -rp "Continue and overwrite existing files? [y/N]: " CONFIRM
-    if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
-        echo "Aborted."
-        exit 0
-    fi
 fi
 
 # --- Create target directory ---
