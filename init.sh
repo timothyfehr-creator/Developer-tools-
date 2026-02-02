@@ -55,8 +55,8 @@ if [[ "$TARGET_DIR" != /* ]]; then
 fi
 TARGET_DIR="${TARGET_DIR%/}"
 
-# Canonicalize if realpath is available
-if command -v realpath >/dev/null 2>&1; then
+# Canonicalize if GNU realpath is available (macOS realpath lacks -m)
+if realpath -m / >/dev/null 2>&1; then
     TARGET_DIR="$(realpath -m "$TARGET_DIR")"
 fi
 
