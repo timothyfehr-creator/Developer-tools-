@@ -30,7 +30,7 @@ cd Developer-tools-
 - **.env.example** — Template for required environment variables
 - **CI workflows** — GitHub Actions for your chosen language
 - **docs/memory/** — Session memory bank (active context, decisions, patterns)
-- **.claude/** — Claude Code commands (`/review`, `/implement`, `/audit`, `/explain`), hooks, and MCP settings
+- **.claude/** — Claude Code commands (`/review`, `/implement`, `/audit`, `/explain`) and hooks
 - **scripts/pack_context.sh** — Generates a file tree map for AI context
 
 ## Supported Languages
@@ -41,10 +41,10 @@ cd Developer-tools-
 
 ## Updating Standards
 
-Run `sync.sh` in an existing project to pull the latest CONTRIBUTING.md and optionally refresh .cursorrules and context map:
+Run `sync.sh` in an existing project to pull the latest CONTRIBUTING.md and Claude commands, and optionally refresh .cursorrules and context map:
 
 ```bash
-bash /path/to/Developer-tools-/sync.sh
+bash /path/to/Developer-tools-/sync.sh /path/to/your-project
 ```
 
 ## Claude Code Commands
@@ -82,6 +82,6 @@ git config --unset core.hooksPath
 templates/common/    — shared files for all projects
 templates/python/    — Python-specific config and CI
 templates/typescript/ — TypeScript-specific config and CI
-claude/              — Claude Code settings, commands, and hooks
-scripts/             — utility scripts (pack_context.sh)
+claude/              — Claude Code commands and hooks
+scripts/             — utility scripts (lib.sh, pack_context.sh)
 ```
