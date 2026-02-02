@@ -168,8 +168,14 @@ mkdir -p "$TARGET_DIR/scripts"
 cp "$SCRIPT_DIR/scripts/pack_context.sh" "$TARGET_DIR/scripts/pack_context.sh"
 chmod +x "$TARGET_DIR/scripts/pack_context.sh"
 
-# --- 8. Initialize git ---
+# --- 8. Initialize git and wire hooks ---
 (cd "$TARGET_DIR" && git init -q)
+if [ -f "$TARGET_DIR/.git/hooks/pre-commit" ]; then
+    echo "Warning: existing git hooks found. Skipping core.hooksPath setup."
+    echo "  To enable commit enforcement, run: git config core.hooksPath .claude/hooks"
+else
+    (cd "$TARGET_DIR" && git config core.hooksPath .claude/hooks)
+fi
 
 # --- Summary ---
 echo ""

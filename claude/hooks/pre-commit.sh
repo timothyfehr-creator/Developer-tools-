@@ -19,9 +19,12 @@ if [ "$added_lines" -gt "$MAX_LINES" ]; then
 fi
 
 # --- Detect language and run tests (only if dependencies are installed) ---
-if [ -f "package.json" ] && [ -d "node_modules" ]; then npm test; fi
-if [ -f "requirements.txt" ] || [ -f "pytest.ini" ]; then
-    if python -c "import pytest" 2>/dev/null; then python -m pytest; fi
+# Skip tests with: SKIP_TESTS=1 git commit ...
+if [ "${SKIP_TESTS:-}" != "1" ]; then
+    if [ -f "package.json" ] && [ -d "node_modules" ]; then npm test; fi
+    if [ -f "requirements.txt" ] || [ -f "pytest.ini" ]; then
+        if python -c "import pytest" 2>/dev/null; then python -m pytest; fi
+    fi
 fi
 
 # --- Update context map ---
