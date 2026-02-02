@@ -128,8 +128,10 @@ fi
 
 if [ "$LANGUAGE" = "typescript" ] || [ "$LANGUAGE" = "both" ]; then
     cp "$SCRIPT_DIR/templates/typescript/package.json" "$TARGET_DIR/package.json"
+    sedi "s|{{PROJECT_NAME}}|$(escape_sed_repl "$PROJECT_NAME")|g" "$TARGET_DIR/package.json"
     cp "$SCRIPT_DIR/templates/typescript/tsconfig.json" "$TARGET_DIR/tsconfig.json"
     cp "$SCRIPT_DIR/templates/typescript/vitest.config.ts" "$TARGET_DIR/vitest.config.ts"
+    cp "$SCRIPT_DIR/templates/typescript/eslint.config.js" "$TARGET_DIR/eslint.config.js"
     mkdir -p "$TARGET_DIR/src"
 fi
 
