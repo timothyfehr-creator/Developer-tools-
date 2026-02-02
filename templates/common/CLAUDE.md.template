@@ -13,7 +13,8 @@
 
 ### Architecture
 (Describe your project structure here — or run `bash scripts/pack_context.sh`
-and reference `docs/context_map.txt`)
+and reference `docs/context_map.txt`, which is local-only and auto-regenerated
+by the pre-commit hook)
 
 ### Conventions
 - Follow CONTRIBUTING.md for all commit and code standards

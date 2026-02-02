@@ -31,7 +31,7 @@ cd Developer-tools-
 - **CI workflows** — GitHub Actions for your chosen language
 - **docs/memory/** — Session memory bank (active context, decisions, patterns)
 - **.claude/** — Claude Code commands (`/review`, `/implement`, `/audit`, `/explain`) and hooks
-- **scripts/pack_context.sh** — Generates a file tree map for AI context
+- **scripts/pack_context.sh** — Generates a file tree map for AI context (local-only, gitignored)
 
 ## Supported Languages
 
