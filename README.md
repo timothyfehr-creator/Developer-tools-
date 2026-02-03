@@ -32,6 +32,7 @@ cd Developer-tools-
 - **.claude/** — Claude Code commands (`/review`, `/implement`, `/audit`, `/explain`) and hooks
 - **scripts/pack_context.sh** — Generates a file tree map for AI context
 - **scripts/pre_pr.py** — Pre-PR checklist (tests, lint, secrets, diff size)
+- **scripts/check_deps.py** — Check dependencies are pinned to exact versions
 - **scripts/validate_*.sh** — Structural validation scripts
 
 ## Supported Languages
@@ -71,6 +72,25 @@ Detected: python
 
 The script auto-detects your project language and runs appropriate checks. Missing tools are skipped gracefully.
 
+## Dependency Pinning Check
+
+Ensure all dependencies are pinned to exact versions for reproducible builds:
+
+```bash
+python scripts/check_deps.py
+```
+
+Example output:
+
+```
+Found 2 unpinned dependencies:
+
+  ✗ requirements.txt: requests (not pinned)
+  ✗ package.json: lodash@^4.17.0 (semver range)
+
+Pin versions for reproducible builds.
+```
+
 ## Claude Code Commands
 
 After scaffolding, use these in Claude Code:
@@ -89,5 +109,5 @@ templates/common/    — shared files for all projects
 templates/python/    — Python-specific config and CI
 templates/typescript/ — TypeScript-specific config and CI
 claude/              — Claude Code settings, commands, and hooks
-scripts/             — utility scripts (pre_pr.py, validate_*.sh, pack_context.sh)
+scripts/             — utility scripts (pre_pr.py, check_deps.py, validate_*.sh, pack_context.sh)
 ```

@@ -226,6 +226,8 @@ do_cp "$SCRIPT_DIR/scripts/pack_context.sh" "$TARGET_DIR/scripts/pack_context.sh
 do_chmod +x "$TARGET_DIR/scripts/pack_context.sh"
 do_cp "$SCRIPT_DIR/scripts/pre_pr.py" "$TARGET_DIR/scripts/pre_pr.py"
 do_chmod +x "$TARGET_DIR/scripts/pre_pr.py"
+do_cp "$SCRIPT_DIR/scripts/check_deps.py" "$TARGET_DIR/scripts/check_deps.py"
+do_chmod +x "$TARGET_DIR/scripts/check_deps.py"
 for f in "$SCRIPT_DIR/scripts/validate_"*.sh; do
     [ -f "$f" ] || continue
     do_cp "$f" "$TARGET_DIR/scripts/$(basename "$f")"
