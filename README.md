@@ -31,6 +31,8 @@ cd Developer-tools-
 - **docs/memory/** — Session memory bank (active context, decisions, patterns)
 - **.claude/** — Claude Code commands (`/review`, `/implement`, `/audit`, `/explain`) and hooks
 - **scripts/pack_context.sh** — Generates a file tree map for AI context
+- **scripts/pre_pr.py** — Pre-PR checklist (tests, lint, secrets, diff size)
+- **scripts/validate_*.sh** — Structural validation scripts
 
 ## Supported Languages
 
@@ -45,6 +47,29 @@ Run `sync.sh` in an existing project to pull the latest CONTRIBUTING.md and opti
 ```bash
 bash /path/to/Developer-tools-/sync.sh
 ```
+
+## Pre-PR Checklist
+
+Before creating a pull request, run the pre-PR checklist:
+
+```bash
+python scripts/pre_pr.py
+```
+
+This runs all checks and reports pass/fail:
+
+```
+Detected: python
+
+✓ Python tests
+✓ Python lint
+✓ Secrets check
+✓ Commit check
+
+4/4 checks passed. Ready for PR!
+```
+
+The script auto-detects your project language and runs appropriate checks. Missing tools are skipped gracefully.
 
 ## Claude Code Commands
 
@@ -64,5 +89,5 @@ templates/common/    — shared files for all projects
 templates/python/    — Python-specific config and CI
 templates/typescript/ — TypeScript-specific config and CI
 claude/              — Claude Code settings, commands, and hooks
-scripts/             — utility scripts (pack_context.sh)
+scripts/             — utility scripts (pre_pr.py, validate_*.sh, pack_context.sh)
 ```

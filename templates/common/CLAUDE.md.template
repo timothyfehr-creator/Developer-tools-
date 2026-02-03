@@ -8,6 +8,7 @@
 
 ### Commands
 - Run tests: `{{TEST_COMMAND}}`
+- Pre-PR check: `python scripts/pre_pr.py`
 - Start dev: (fill in)
 - Pack context: `bash scripts/pack_context.sh`
 
