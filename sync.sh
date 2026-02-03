@@ -42,17 +42,6 @@ fi
 
 echo ""
 
-# --- Optionally update .cursorrules from CLAUDE.md ---
-if [ -f "$TARGET_DIR/CLAUDE.md" ]; then
-    read -rp "Update .cursorrules from current CLAUDE.md? [y/N]: " CONFIRM
-    if [[ "$CONFIRM" =~ ^[Yy]$ ]]; then
-        cp "$TARGET_DIR/CLAUDE.md" "$TARGET_DIR/.cursorrules"
-        echo ".cursorrules updated."
-    fi
-fi
-
-echo ""
-
 # --- Optionally re-run pack_context ---
 if [ -f "$TARGET_DIR/scripts/pack_context.sh" ]; then
     read -rp "Re-generate docs/context_map.txt? [y/N]: " CONFIRM

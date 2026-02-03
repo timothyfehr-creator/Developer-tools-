@@ -24,13 +24,12 @@ cd Developer-tools-
 
 - **CLAUDE.md** — AI context file with project-specific info
 - **CONTRIBUTING.md** — Enforced development standards
-- **.cursorrules** — Mirror of CLAUDE.md for Cursor IDE
 - **.coderabbit.yaml** — Automated PR review config
 - **.gitignore** — Comprehensive ignores (Python, Node, secrets, AI artifacts)
 - **.env.example** — Template for required environment variables
 - **CI workflows** — GitHub Actions for your chosen language
 - **docs/memory/** — Session memory bank (active context, decisions, patterns)
-- **.claude/** — Claude Code commands (`/review`, `/implement`, `/audit`, `/explain`), hooks, and MCP settings
+- **.claude/** — Claude Code commands (`/review`, `/implement`, `/audit`, `/explain`) and hooks
 - **scripts/pack_context.sh** — Generates a file tree map for AI context
 
 ## Supported Languages
@@ -41,7 +40,7 @@ cd Developer-tools-
 
 ## Updating Standards
 
-Run `sync.sh` in an existing project to pull the latest CONTRIBUTING.md and optionally refresh .cursorrules and context map:
+Run `sync.sh` in an existing project to pull the latest CONTRIBUTING.md and optionally refresh the context map:
 
 ```bash
 bash /path/to/Developer-tools-/sync.sh
