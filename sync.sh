@@ -42,6 +42,30 @@ fi
 
 echo ""
 
+# --- Sync PR template ---
+REMOTE_PR_TEMPLATE="$(curl -fsSL "$REMOTE_BASE/.github/PULL_REQUEST_TEMPLATE.md" 2>/dev/null)" || true
+if [ -n "$REMOTE_PR_TEMPLATE" ]; then
+    mkdir -p "$TARGET_DIR/.github"
+    LOCAL_PR_TEMPLATE=""
+    if [ -f "$TARGET_DIR/.github/PULL_REQUEST_TEMPLATE.md" ]; then
+        LOCAL_PR_TEMPLATE=$(cat "$TARGET_DIR/.github/PULL_REQUEST_TEMPLATE.md")
+    fi
+
+    if [ "$REMOTE_PR_TEMPLATE" = "$LOCAL_PR_TEMPLATE" ]; then
+        echo "PR template is up to date."
+    else
+        read -rp "Update PR template? [y/N]: " CONFIRM
+        if [[ "$CONFIRM" =~ ^[Yy]$ ]]; then
+            echo "$REMOTE_PR_TEMPLATE" > "$TARGET_DIR/.github/PULL_REQUEST_TEMPLATE.md"
+            echo "PR template updated."
+        else
+            echo "Skipped."
+        fi
+    fi
+fi
+
+echo ""
+
 # --- Optionally update .cursorrules from CLAUDE.md ---
 if [ -f "$TARGET_DIR/CLAUDE.md" ]; then
     read -rp "Update .cursorrules from current CLAUDE.md? [y/N]: " CONFIRM

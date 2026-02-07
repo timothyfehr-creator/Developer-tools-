@@ -108,6 +108,7 @@ cp "$SCRIPT_DIR/templates/common/.env.example" "$TARGET_DIR/.env.example"
 
 mkdir -p "$TARGET_DIR/.github/workflows"
 cp "$SCRIPT_DIR/templates/common/.github/workflows/ci.yml" "$TARGET_DIR/.github/workflows/ci.yml"
+cp "$SCRIPT_DIR/templates/common/.github/PULL_REQUEST_TEMPLATE.md" "$TARGET_DIR/.github/PULL_REQUEST_TEMPLATE.md"
 
 mkdir -p "$TARGET_DIR/docs/memory"
 cp "$SCRIPT_DIR/templates/common/docs/memory/active_context.md" "$TARGET_DIR/docs/memory/active_context.md"
