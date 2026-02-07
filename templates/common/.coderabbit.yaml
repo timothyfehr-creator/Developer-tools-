@@ -19,3 +19,7 @@ instructions:
     - "Check that frontend and backend types match if both are modified"
     - "Verify new dependencies are justified and version-pinned"
     - "Ensure tests exist for new logic and cover error paths"
+    - "Flag functions longer than 100 lines — suggest splitting"
+    - "Flag files longer than 500 lines — suggest decomposing"
+    - "Flag new TODO, FIXME, or HACK comments — note them for tracking"
+    - "Flag new dependencies added without a PR comment explaining why they are needed"
