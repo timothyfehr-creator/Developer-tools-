@@ -113,6 +113,7 @@ mkdir -p "$TARGET_DIR/docs/memory"
 cp "$SCRIPT_DIR/templates/common/docs/memory/active_context.md" "$TARGET_DIR/docs/memory/active_context.md"
 cp "$SCRIPT_DIR/templates/common/docs/memory/decisions.md" "$TARGET_DIR/docs/memory/decisions.md"
 cp "$SCRIPT_DIR/templates/common/docs/memory/system_patterns.md" "$TARGET_DIR/docs/memory/system_patterns.md"
+cp "$SCRIPT_DIR/templates/common/docs/DEBT.md" "$TARGET_DIR/docs/DEBT.md"
 
 # --- 3. Copy language-specific templates ---
 if [ "$LANGUAGE" = "python" ] || [ "$LANGUAGE" = "both" ]; then
