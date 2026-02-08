@@ -2,112 +2,136 @@
   "metadata": {
     "created": "2026-02-08",
     "last_updated": "2026-02-08",
-    "notes": "Structured timeline for Tesla HW generations, software milestones, and regulatory actions. Populate during Phase 1 research."
+    "notes": "Structured timeline for Tesla HW generations, software milestones, and regulatory actions."
   },
   "hardware_generations": [
     {
-      "generation": "HW2.5",
-      "also_known_as": ["AP2.5"],
-      "chip": "Nvidia Parker (+ discrete GPU)",
+      "generation": "HW1",
+      "also_known_as": ["AP1"],
+      "chip": "Mobileye EyeQ3",
+      "foundry": "STMicroelectronics (Mobileye)",
+      "first_sighting": null,
+      "first_deliveries": "2014-10",
+      "volume_threshold_date": null,
+      "discontinued_date": "2016-10",
+      "notes": "First Autopilot hardware. Single forward camera + radar + USS. Partnership with Mobileye ended 2016.",
+      "sources": ["S001"]
+    },
+    {
+      "generation": "HW2/HW2.5",
+      "also_known_as": ["AP2", "AP2.5"],
+      "chip": "Nvidia Drive PX 2",
       "foundry": "TSMC (Nvidia)",
       "first_sighting": null,
-      "first_deliveries": "2017-08",
+      "first_deliveries": "2016-10",
       "volume_threshold_date": null,
       "discontinued_date": "2019-Q2",
-      "notes": "Transitional hardware. Used Nvidia silicon before Tesla's in-house chip.",
-      "sources": []
+      "notes": "8 cameras, radar, USS. Used Nvidia silicon. HW2.5 added discrete GPU. Free retrofit to HW3 for FSD purchasers.",
+      "sources": ["S001"]
     },
     {
       "generation": "HW3",
       "also_known_as": ["FSD Computer", "AI3"],
       "chip": "Tesla FSD Chip",
-      "foundry": "Samsung 14nm",
-      "first_sighting": "2019-03",
-      "first_deliveries": "2019-04",
+      "foundry": "Samsung",
+      "process_node": "14nm",
+      "first_sighting": "2018-10",
+      "first_deliveries": "2019-03 (Model S/X), 2019-04 (Model 3)",
       "volume_threshold_date": "2019-Q3",
-      "discontinued_date": null,
-      "notes": "First Tesla-designed silicon. Dual redundant SoC. ~144 TOPS. Retrofit program offered for HW2.5 owners.",
-      "sources": []
+      "discontinued_date": "2023 (production), but v12.6.x software maintained",
+      "compute_tops": 144,
+      "power_watts": 100,
+      "camera_resolution": "1.2 MP (1280x960)",
+      "camera_count": 8,
+      "notes": "First Tesla-designed silicon. Dual redundant SoC. Same physical size as HW2.5 board, enabling drop-in retrofit. Retrofit cost: free for FSD purchasers, $1000 for others. FSD software capped at v12.6.x.",
+      "sources": ["S002", "S003", "S004"]
     },
     {
       "generation": "HW4",
-      "also_known_as": ["AI4", "HW4D"],
-      "chip": "Tesla AI4 Chip",
-      "foundry": "To be confirmed (reported: Samsung 7nm or TSMC)",
-      "first_sighting": "2023-Q1",
-      "first_deliveries": "2023-Q2",
-      "volume_threshold_date": "2023-Q4 to 2024-Q1",
+      "also_known_as": ["AI4", "FSD Computer 2"],
+      "chip": "Tesla AI4 (Exynos-based)",
+      "foundry": "Samsung",
+      "process_node": "7nm (7LPP)",
+      "first_sighting": "2022-06 (FCC Phoenix radar filing)",
+      "first_deliveries": "2023-01 (Europe Model S/X), 2023-03 (US Model X)",
+      "model_y_us": "2023-05 (Fremont VIN ~PF789500+)",
+      "model_3_highland": "2023-Q4",
+      "shanghai_transition": "2024-02-01 (official)",
+      "volume_threshold_date": "2023-Q3 (~30% of deliveries, estimated)",
+      "full_transition": "2024-Q1 (~90%+ of new production)",
       "discontinued_date": null,
-      "notes": "Significant compute uplift. Camera count changes (removed USS initially, some markets re-added). Broader sensor changes debated.",
-      "sources": []
+      "compute_tops": "~300+ (2x50 TOPS per accelerator, 3 per side)",
+      "power_watts": 160,
+      "camera_resolution": "5 MP (2896x1876, Sony IMX963)",
+      "camera_count": 8,
+      "ram_gb": 16,
+      "storage_gb": 256,
+      "notes": "20 CPU cores per side. Front cameras reduced from 3 to 2 (higher res). B-pillar cameras with heater element. 12 camera connectors on board (3 spare). Phoenix HD radar present in some S/X but not software-enabled. USS fully removed. No retrofit from HW3 (different form factor, wiring, cooling). Musk reversed no-retrofit stance in Q4 2024, promising free upgrade for FSD purchasers, but no retrofits have begun as of Feb 2026.",
+      "sources": ["S005", "S006", "S007", "S008"]
     },
     {
-      "generation": "A15 / HW5 (unresolved)",
-      "also_known_as": ["AI5 (hypothesis)", "HW5 (hypothesis)"],
-      "chip": "A15 (Tesla naming, unconfirmed mapping)",
-      "foundry": "Unknown (speculation: TSMC 4nm/5nm class)",
+      "generation": "AI5",
+      "also_known_as": ["HW5"],
+      "chip": "Tesla AI5",
+      "foundry": "TSMC (Arizona, 3nm N3P) + Samsung (Taylor TX, 4nm)",
+      "process_node": "3nm (TSMC) / 4nm (Samsung)",
       "first_sighting": null,
-      "first_deliveries": null,
-      "volume_threshold_date": null,
+      "first_deliveries": "H2 2026 (limited units, projected)",
+      "volume_threshold_date": "Mid-2027 (per Musk Nov 2025)",
       "discontinued_date": null,
-      "notes": "TO BE RESEARCHED. Naming reconciliation required. See Q7 in forecast registry.",
-      "sources": []
+      "compute_tops": "2000-2500",
+      "power_watts": "250-800 (wide range; Musk targeting 250W)",
+      "memory_bandwidth_tbs": 1.9,
+      "memory_type": "HBM3 (on-package)",
+      "notes": "Half-reticle die size. No legacy GPU or ISP — entire chip is AI inference engine. Softmax in hardware (was emulated in software on AI4). Dual-sourced: TSMC N3P (Arizona Fab 21 Phase 2) + Samsung 4nm (Taylor TX). Samsung EUV trials starting March 2026. Design 'finished' July 2025 per Musk, 'almost done' Jan 2026 (contradiction). Last chip intended for vehicles (AI6 is Optimus/datacenter only). May trigger US export controls for international sales. No retrofit from HW4 possible (different cooling/power requirements per Q2 2025 earnings). Cybercab will ship with AI4 because AI5 not ready in volume.",
+      "sources": ["S009", "S010", "S011", "S012", "S013"]
+    },
+    {
+      "generation": "AI6",
+      "also_known_as": [],
+      "chip": "Tesla AI6",
+      "foundry": "Samsung (Taylor TX)",
+      "process_node": "2nm (GAA)",
+      "first_deliveries": "~2028",
+      "compute_tops": 22500,
+      "notes": "NOT for vehicles. Optimus robots + data centers. Unified training + inference. $16.5B Samsung deal announced July 2025. Contract through Dec 2033.",
+      "sources": ["S014", "S015"]
     }
   ],
   "software_milestones": [
-    {
-      "date": "2020-10",
-      "event": "FSD Beta initial limited release",
-      "significance": "First city-street capable autonomous driving beta to non-employees",
-      "sources": []
-    },
-    {
-      "date": "2023-11",
-      "event": "FSD v12 (end-to-end neural network)",
-      "significance": "Major architecture shift from rule-based planning to end-to-end learned behavior",
-      "sources": []
-    },
-    {
-      "date": "2024-Q1",
-      "event": "FSD v12.3+ wide release",
-      "significance": "Broad rollout of end-to-end stack; widely reported improvement in driving smoothness",
-      "sources": []
-    }
+    {"date": "2020-10", "event": "FSD Beta initial limited release", "significance": "First city-street capable autonomous driving beta to non-employees", "sources": []},
+    {"date": "2023-11", "event": "FSD v12 (end-to-end neural network)", "significance": "Major architecture shift: ~300K lines of C++ planning code replaced by E2E neural net", "sources": []},
+    {"date": "2024-03", "event": "FSD v12.3 wide release", "significance": "First broad E2E rollout; Autopark added; improved driving visualization", "sources": []},
+    {"date": "2024-05", "event": "FSD v12.4 (vision-based driver monitoring)", "significance": "Cabin camera becomes primary attention monitor; steering wheel nag reduced", "sources": []},
+    {"date": "2024-08", "event": "FSD v12.5 (E2E extended to highway)", "significance": "HW4-first: E2E for highway driving. Actually Smart Summon added. Musk claimed 100x improvement.", "sources": []},
+    {"date": "2024-10", "event": "FSD v12.5.6 (first HW4-native training data)", "significance": "First version trained on native 5MP camera data instead of downscaled HW3 resolution", "sources": []},
+    {"date": "2024-12", "event": "FSD v13.2 (HW4 only)", "significance": "First version using native 5MP resolution. 3x context length. Audio inputs. HW3 forked to v12.6.x permanently.", "sources": []},
+    {"date": "2025-01", "event": "FSD v12.6.1 (HW3 only)", "significance": "Emergency vehicle sound detection. Unified highway/city stack for HW3.", "sources": []},
+    {"date": "2025-10", "event": "FSD v14 (HW4 only)", "significance": "10x larger neural network. Navigation integrated into NN. Fewer false braking. Pothole avoidance. MotorTrend Best Tech 2026.", "sources": []},
+    {"date": "2026-01", "event": "Autopilot brand discontinued", "significance": "New vehicles ship with only TACC as standard. FSD renamed 'Full Self-Driving (Supervised)'. Subscription-only after Feb 14, 2026.", "sources": []},
+    {"date": "2026-02", "event": "FSD v14.2+ (current)", "significance": "Latest: upgraded vision encoder. David Moss achieved 12,961 miles intervention-free on v14.2.1.25.", "sources": []}
   ],
   "regulatory_actions": [
-    {
-      "date": "2022-06",
-      "body": "NHTSA",
-      "action": "Opened formal investigation into Autopilot crashes (PE 22-002)",
-      "impact": "Ongoing scrutiny of Tesla's driver monitoring and crash patterns",
-      "sources": []
-    },
-    {
-      "date": "2023-12",
-      "body": "NHTSA",
-      "action": "Recall 23V-838: 2M+ vehicles for Autopilot remedial OTA",
-      "impact": "Required additional driver monitoring safeguards and attention alerts",
-      "sources": []
-    }
+    {"date": "2022-02", "body": "NHTSA", "action": "PE 22-002: Investigation into phantom braking (416K vehicles)", "status": "Open (dormant)", "impact": "No enforcement action taken", "sources": []},
+    {"date": "2022-02", "body": "NHTSA", "action": "Recall 22V-120: Rolling stop functionality in FSD Beta (54K vehicles)", "status": "Closed", "impact": "OTA removed rolling-stop setting", "sources": []},
+    {"date": "2022-06", "body": "NHTSA", "action": "EA 22-002: Upgraded investigation into emergency vehicle crashes (830K vehicles)", "status": "Closed Apr 2024", "impact": "Led to Recall 23V-838", "sources": []},
+    {"date": "2023-02", "body": "NHTSA", "action": "Recall 23V-085: FSD Beta running red lights, disobeying speed limits (363K vehicles)", "status": "Closed", "impact": "OTA update", "sources": []},
+    {"date": "2023-12", "body": "NHTSA", "action": "Recall 23V-838: Autopilot misuse — insufficient driver engagement controls (2.03M vehicles)", "status": "Closed (but follow-up RQ24009 opened)", "impact": "OTA: larger alerts, stricter monitoring, 1-week lockout after 5 forced disengagements", "sources": []},
+    {"date": "2024-04", "body": "NHTSA", "action": "RQ24009: Recall Query on 23V-838 remedy effectiveness", "status": "Open", "impact": "Post-remedy crashes continued; remedy partly opt-in and reversible", "sources": []},
+    {"date": "2024-10", "body": "NHTSA", "action": "FSD low-visibility probe (2.4M vehicles): 4 collisions in fog/sun glare including fatal pedestrian strike", "status": "Open", "impact": "Ongoing investigation", "sources": []},
+    {"date": "2025-01", "body": "NHTSA", "action": "Actually Smart Summon probe (2.6M vehicles): 16 crash reports", "status": "Open", "impact": "Tesla failed to report crashes per Standing General Order", "sources": []},
+    {"date": "2025-08", "body": "NHTSA", "action": "Crash-reporting violations probe: Tesla reported crashes months late", "status": "Open", "impact": "Possible fines", "sources": []},
+    {"date": "2025-10", "body": "NHTSA", "action": "PE25012: FSD traffic violations (2.88M vehicles) — running red lights (6 crash-causing, 4 with injuries), crossing double-yellow, wrong-way turns", "status": "Open — escalating. 80 violation reports by Dec 2025. NHTSA demanded review of 8,313 potential violations. Deadline extended to Feb 23, 2026.", "impact": "Could lead to formal recall or deployment restrictions", "sources": []},
+    {"date": "2025-07", "body": "CA DMV", "action": "ALJ hearing on deceptive Autopilot/FSD marketing (filed 2022, hearing July 2025)", "status": "Ruling adopted Dec 2025", "impact": "Tesla given 60 days to fix marketing or face 30-day sales suspension in CA", "sources": []},
+    {"date": "2025-08", "body": "CA Court (N.D. Cal.)", "action": "Class action certified: FSD purchasers alleging Tesla promised autonomy never delivered", "status": "Active", "impact": "Two subclasses certified", "sources": []},
+    {"date": "2023-10", "body": "DOJ", "action": "Criminal investigation: subpoenas re whether Tesla misled customers about FSD/Autopilot", "status": "Believed ongoing; no charges filed", "impact": "Unknown", "sources": []},
+    {"date": "2024-03", "body": "IIHS", "action": "Safeguard ratings launched: Tesla Autopilot and FSD both rated POOR", "status": "No retest published post-recall", "impact": "Reputational; no insurance impact confirmed", "sources": []},
+    {"date": "2025-09", "body": "DOT (Trump admin)", "action": "Transportation Secretary announces policy to ease AV safety rules and crash reporting", "status": "Active push", "impact": "Favorable to Tesla: deployment cap increase proposed (2,500 → 100,000+), national framework to preempt state regs", "sources": []}
   ],
   "naming_reconciliation": {
-    "status": "UNRESOLVED",
-    "hypotheses": [
-      {
-        "id": "H1",
-        "claim": "A15 == AI5 == HW5 (single next-generation compute platform for vehicles)",
-        "supporting_evidence": [],
-        "against_evidence": [],
-        "resolution_criteria": "Teardown or FCC filing showing board marked A15 in a production vehicle context"
-      },
-      {
-        "id": "H2",
-        "claim": "A15 is a datacenter/training chip; AI5/HW5 is the vehicle inference chip (separate products)",
-        "supporting_evidence": [],
-        "against_evidence": [],
-        "resolution_criteria": "Tesla documentation or earnings call distinguishing vehicle vs datacenter silicon naming"
-      }
-    ],
-    "notes": "Tesla has used overlapping naming conventions. Dojo chips, vehicle inference chips, and training cluster chips may have independent naming. Do not assume mapping without evidence."
+    "status": "RESOLVED",
+    "resolution": "AI5 = HW5. Tesla officially renamed the 'HW' prefix to 'AI' at the June 13, 2024 Annual Shareholder Meeting. HW3=AI3, HW4=AI4, HW5=AI5. The 'A15' naming in the original plan was a user error — the correct designation is 'AI5'. There is no separate chip called 'A15'.",
+    "vehicle_vs_datacenter": "AI5 is the last chip intended for vehicles (and Optimus robots). AI6 is exclusively for Optimus + data centers. Dojo (D1 chip) was a separate training-only chip family that was shut down Aug 2025 and restarted Jan 2026 using AI5 silicon.",
+    "sources": ["NotATeslaApp", "Teslascope (July 2024)", "Tesla Annual Meeting transcript (June 2024)"]
   }
 }
