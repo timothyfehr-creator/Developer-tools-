@@ -1,0 +1,172 @@
+{
+  "metadata": {
+    "created": "2026-02-08",
+    "last_updated": "2026-02-08",
+    "plan_version": "2.0-streamlined",
+    "notes": "Unified evidence + source tracking. Combines sources, evidence log, and forecast registry into one file."
+  },
+  "forecasts": [
+    {
+      "question_id": "Q1",
+      "statement": "At least one Tesla production vehicle delivered to U.S. customers includes an A15-class compute module by 2027-03-31.",
+      "horizon_date": "2027-03-31",
+      "prior_p": 0.55,
+      "current_p": null,
+      "confidence_bucket": null,
+      "evidence": [],
+      "kill_criteria": [
+        "By 2026-12-31: no credible teardowns, FCC filings, or primary-source references to new compute module entering builds → reduce to ≤0.25"
+      ],
+      "skeptic_case": "",
+      "what_changes_my_mind": [
+        "FCC filing for new Tesla compute module",
+        "Teardown of pre-production vehicle with new board",
+        "Credible supplier leak tied to specific foundry node + timeline"
+      ],
+      "key_assumptions": [
+        "HW4→A15 transition follows similar timeline pattern to HW3→HW4"
+      ],
+      "last_updated": "2026-02-08"
+    },
+    {
+      "question_id": "Q2",
+      "statement": "A15-class compute is available in the U.S. configurator on at least one high-volume Tesla model (Model Y/3) by 2027-03-31.",
+      "horizon_date": "2027-03-31",
+      "prior_p": 0.45,
+      "current_p": null,
+      "confidence_bucket": null,
+      "evidence": [],
+      "kill_criteria": [
+        "Q1 kill criteria fires → Q2 automatically reduces to ≤0.15",
+        "Tesla announces A15 as Cybertruck/Semi-only through 2027 → reduce to ≤0.20"
+      ],
+      "skeptic_case": "",
+      "what_changes_my_mind": [
+        "Tesla configurator update showing new compute option on Model Y/3",
+        "Credible reporting on production line retooling for Model Y/3 at Fremont or Austin"
+      ],
+      "key_assumptions": [
+        "Tesla prioritizes high-volume models for new compute (not guaranteed — could start with Cybertruck or new model)"
+      ],
+      "last_updated": "2026-02-08"
+    },
+    {
+      "question_id": "Q3",
+      "statement": "A15-class compute reaches meaningful volume (>=30% of U.S. deliveries across models) by 2027-03-31.",
+      "horizon_date": "2027-03-31",
+      "prior_p": 0.25,
+      "current_p": null,
+      "confidence_bucket": null,
+      "evidence": [],
+      "kill_criteria": [
+        "Q1 kill criteria fires → Q3 automatically reduces to ≤0.05",
+        "Credible reporting shifts volume 2027 to late 2027/2028 → reduce to ≤0.10"
+      ],
+      "skeptic_case": "",
+      "what_changes_my_mind": [
+        "Supplier volume commitments for 2026 production",
+        "Tesla earnings guidance indicating new compute across lineup"
+      ],
+      "key_assumptions": [
+        "30% volume within months of first delivery is historically rare for Tesla HW transitions"
+      ],
+      "last_updated": "2026-02-08"
+    },
+    {
+      "question_id": "Q4",
+      "statement": "Noticeable reduction in driver interventions on LA-area freeways (clear weather, light-to-moderate traffic) vs early-2026 baselines by 2027-03-31. Defined as >=30% reduction where measurable, OR consensus among >=3 credible independent testers.",
+      "horizon_date": "2027-03-31",
+      "prior_p": 0.55,
+      "current_p": null,
+      "confidence_bucket": null,
+      "evidence": [],
+      "kill_criteria": [
+        "Multiple independent testers report regression or plateau in FSD v13+ → reduce by 0.10-0.15",
+        "Tesla shifts engineering resources away from FSD (unlikely but possible) → reduce sharply"
+      ],
+      "skeptic_case": "",
+      "what_changes_my_mind": [
+        "FSD v13/v14 release notes showing specific highway improvements",
+        "Independent tester longitudinal data showing measurable improvement",
+        "Tesla publishing disengagement metrics (extremely unlikely but would be Grade A)"
+      ],
+      "key_assumptions": [
+        "Early-2026 baselines can be estimated from community tester data",
+        "Highway performance is less hardware-gated than surface street performance"
+      ],
+      "last_updated": "2026-02-08"
+    },
+    {
+      "question_id": "Q5",
+      "statement": "Noticeable reduction in driver interventions on LA-area surface streets (arterials + unprotected turns) vs early-2026 baselines by 2027-03-31. Defined as >=20% reduction where measurable, OR consensus among >=3 credible independent testers.",
+      "horizon_date": "2027-03-31",
+      "prior_p": 0.40,
+      "current_p": null,
+      "confidence_bucket": null,
+      "evidence": [],
+      "kill_criteria": [
+        "Multiple independent testers report no improvement in surface street handling → reduce to ≤0.25",
+        "Regulatory action restricts surface street FSD use → reframe question"
+      ],
+      "skeptic_case": "",
+      "what_changes_my_mind": [
+        "Release notes targeting unprotected turns, pedestrian handling, or parking lot navigation",
+        "Tester consensus on surface street improvement",
+        "A15 hardware enabling higher-resolution perception that specifically helps urban scenarios"
+      ],
+      "key_assumptions": [
+        "Surface streets are harder than highways; improvement rate is historically slower",
+        "Unprotected left turns remain the primary challenge in urban FSD"
+      ],
+      "last_updated": "2026-02-08"
+    },
+    {
+      "question_id": "Q6",
+      "statement": "Regulatory pressure results in additional guardrails or constraints that noticeably reduce risky/non-compliant behaviors (rolling stops, late aggressive merges, etc.) by 2027-03-31.",
+      "horizon_date": "2027-03-31",
+      "prior_p": 0.60,
+      "current_p": null,
+      "confidence_bucket": null,
+      "evidence": [],
+      "kill_criteria": [
+        "NHTSA closes active investigations without action → reduce by 0.15-0.20",
+        "New administration signals deregulatory stance toward AV → reduce by 0.10"
+      ],
+      "skeptic_case": "",
+      "what_changes_my_mind": [
+        "New NHTSA enforcement action or recall specific to FSD behaviors",
+        "CA DMV regulatory changes affecting FSD testing/deployment",
+        "IIHS rating downgrade tied to specific behavioral issues"
+      ],
+      "key_assumptions": [
+        "Current regulatory trajectory continues (active investigations, increasing scrutiny)",
+        "Political environment could shift this significantly in either direction"
+      ],
+      "last_updated": "2026-02-08"
+    },
+    {
+      "question_id": "Q7",
+      "statement": "By 2026-12-31, decisive public evidence exists that A15 is (or is not) the same generation as AI5/HW5.",
+      "horizon_date": "2026-12-31",
+      "prior_p": 0.70,
+      "current_p": null,
+      "confidence_bucket": null,
+      "evidence": [],
+      "kill_criteria": [
+        "Tesla explicitly publishes naming (near-certain resolution)",
+        "By 2026-09-30 no teardowns or filings reference any of these names → reduce to 0.50"
+      ],
+      "skeptic_case": "",
+      "what_changes_my_mind": [
+        "Tesla official documentation using consistent naming",
+        "Teardown identifying board markings with clear generation labels",
+        "FCC filing with model number cross-referenced to known naming"
+      ],
+      "key_assumptions": [
+        "Tesla naming typically becomes clear through teardowns/FCC filings 6-12 months before volume"
+      ],
+      "last_updated": "2026-02-08"
+    }
+  ],
+  "sources_index": []
+}

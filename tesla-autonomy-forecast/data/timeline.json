@@ -1,0 +1,113 @@
+{
+  "metadata": {
+    "created": "2026-02-08",
+    "last_updated": "2026-02-08",
+    "notes": "Structured timeline for Tesla HW generations, software milestones, and regulatory actions. Populate during Phase 1 research."
+  },
+  "hardware_generations": [
+    {
+      "generation": "HW2.5",
+      "also_known_as": ["AP2.5"],
+      "chip": "Nvidia Parker (+ discrete GPU)",
+      "foundry": "TSMC (Nvidia)",
+      "first_sighting": null,
+      "first_deliveries": "2017-08",
+      "volume_threshold_date": null,
+      "discontinued_date": "2019-Q2",
+      "notes": "Transitional hardware. Used Nvidia silicon before Tesla's in-house chip.",
+      "sources": []
+    },
+    {
+      "generation": "HW3",
+      "also_known_as": ["FSD Computer", "AI3"],
+      "chip": "Tesla FSD Chip",
+      "foundry": "Samsung 14nm",
+      "first_sighting": "2019-03",
+      "first_deliveries": "2019-04",
+      "volume_threshold_date": "2019-Q3",
+      "discontinued_date": null,
+      "notes": "First Tesla-designed silicon. Dual redundant SoC. ~144 TOPS. Retrofit program offered for HW2.5 owners.",
+      "sources": []
+    },
+    {
+      "generation": "HW4",
+      "also_known_as": ["AI4", "HW4D"],
+      "chip": "Tesla AI4 Chip",
+      "foundry": "To be confirmed (reported: Samsung 7nm or TSMC)",
+      "first_sighting": "2023-Q1",
+      "first_deliveries": "2023-Q2",
+      "volume_threshold_date": "2023-Q4 to 2024-Q1",
+      "discontinued_date": null,
+      "notes": "Significant compute uplift. Camera count changes (removed USS initially, some markets re-added). Broader sensor changes debated.",
+      "sources": []
+    },
+    {
+      "generation": "A15 / HW5 (unresolved)",
+      "also_known_as": ["AI5 (hypothesis)", "HW5 (hypothesis)"],
+      "chip": "A15 (Tesla naming, unconfirmed mapping)",
+      "foundry": "Unknown (speculation: TSMC 4nm/5nm class)",
+      "first_sighting": null,
+      "first_deliveries": null,
+      "volume_threshold_date": null,
+      "discontinued_date": null,
+      "notes": "TO BE RESEARCHED. Naming reconciliation required. See Q7 in forecast registry.",
+      "sources": []
+    }
+  ],
+  "software_milestones": [
+    {
+      "date": "2020-10",
+      "event": "FSD Beta initial limited release",
+      "significance": "First city-street capable autonomous driving beta to non-employees",
+      "sources": []
+    },
+    {
+      "date": "2023-11",
+      "event": "FSD v12 (end-to-end neural network)",
+      "significance": "Major architecture shift from rule-based planning to end-to-end learned behavior",
+      "sources": []
+    },
+    {
+      "date": "2024-Q1",
+      "event": "FSD v12.3+ wide release",
+      "significance": "Broad rollout of end-to-end stack; widely reported improvement in driving smoothness",
+      "sources": []
+    }
+  ],
+  "regulatory_actions": [
+    {
+      "date": "2022-06",
+      "body": "NHTSA",
+      "action": "Opened formal investigation into Autopilot crashes (PE 22-002)",
+      "impact": "Ongoing scrutiny of Tesla's driver monitoring and crash patterns",
+      "sources": []
+    },
+    {
+      "date": "2023-12",
+      "body": "NHTSA",
+      "action": "Recall 23V-838: 2M+ vehicles for Autopilot remedial OTA",
+      "impact": "Required additional driver monitoring safeguards and attention alerts",
+      "sources": []
+    }
+  ],
+  "naming_reconciliation": {
+    "status": "UNRESOLVED",
+    "hypotheses": [
+      {
+        "id": "H1",
+        "claim": "A15 == AI5 == HW5 (single next-generation compute platform for vehicles)",
+        "supporting_evidence": [],
+        "against_evidence": [],
+        "resolution_criteria": "Teardown or FCC filing showing board marked A15 in a production vehicle context"
+      },
+      {
+        "id": "H2",
+        "claim": "A15 is a datacenter/training chip; AI5/HW5 is the vehicle inference chip (separate products)",
+        "supporting_evidence": [],
+        "against_evidence": [],
+        "resolution_criteria": "Tesla documentation or earnings call distinguishing vehicle vs datacenter silicon naming"
+      }
+    ],
+    "notes": "Tesla has used overlapping naming conventions. Dojo chips, vehicle inference chips, and training cluster chips may have independent naming. Do not assume mapping without evidence."
+  }
+}
