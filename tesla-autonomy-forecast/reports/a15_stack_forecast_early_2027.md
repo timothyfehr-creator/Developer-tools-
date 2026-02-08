@@ -454,4 +454,89 @@ The evidence overwhelmingly points to:
 
 ---
 
+## 10. Extended Horizon: What If You Wait Until Mid-to-Late 2027?
+
+> This section extends the Q1 2027 forecast to a **Q3–Q4 2027** purchase horizon, relevant if you're willing to wait for an AI5-equipped vehicle.
+
+### Revised Probability Table (Extended to 2027-09-30)
+
+| Q# | Question (abbreviated) | Q1 2027 Posterior | Extended to Q3 2027 | Delta | Notes |
+|---|---|---|---|---|---|
+| Q1 | AI5 in ≥1 delivered U.S. vehicle | 0.35 | **0.65–0.75** | +0.30–0.40 | Musk said "mid-2027" for volume [FACT]. First deliveries in limited models by Q3 2027 is plausible |
+| Q2 | AI5 on Model Y/3 configurator | 0.20 | **0.50–0.60** | +0.30–0.40 | If volume ramps mid-2027, Model Y/3 follows within 2–3 months (per HW4 precedent) [INFERENCE] |
+| Q3 | AI5 ≥30% of U.S. deliveries | 0.05 | **0.20–0.30** | +0.15–0.25 | Aggressive ramp needed; depends on dual-foundry yields. HW4 hit 30% in ~5 months [FACT] |
+| Q4 | ≥30% freeway intervention reduction | 0.72 | **0.80–0.85** | +0.08–0.13 | 6 more months of software improvement on proven trajectory |
+| Q5 | ≥20% surface street improvement | 0.55 | **0.65–0.70** | +0.10–0.15 | Same; surface streets improve slower but the baseline is already solid |
+| Q6 | Regulatory guardrails tighten | 0.78 | **0.82–0.88** | +0.04–0.10 | PE25012 resolution expected by mid-2027; CA DMV enforcement clock running |
+| Q7 | AI5 naming resolved | 0.98 | **0.99** | +0.01 | Already near-certain |
+
+### The Emulation Trap — The Critical Insight for Late-2027 Buyers
+
+The single most important thing to understand about buying an AI5 vehicle in late 2027:
+
+**Your AI5 vehicle will run AI4-emulation software.**
+
+This is not speculation — it's the established pattern:
+
+| Transition | Emulation Period | Native Software |
+|---|---|---|
+| HW3 → HW4 | March 2023 – December 2024 (21 months) | FSD v13.2 (Dec 2024) |
+| HW4 → AI5 | H2 2027 – **~2029** [INFERENCE] | Unknown — likely 18–24 months after first AI5 delivery |
+
+What this means in practice:
+- **Your late-2027 AI5 vehicle will drive identically to a 2024 HW4 vehicle running the same software** [INFERENCE]
+- The 2,000–2,500 TOPS of AI5 compute sits mostly idle, downclocked to match AI4 behavior [INFERENCE]
+- You're paying for future capability, not present capability
+- The hardware investment is a bet on **2029–2030**, when native AI5 software unlocks the full compute
+
+### When AI5 Hardware Actually Matters
+
+| Capability | Available on HW4 + v16/v17? | Requires Native AI5? | Timeline for AI5-native |
+|---|---|---|---|
+| Highway cruising | Yes — already excellent | No | N/A |
+| Urban driving (arterials) | Yes — improving rapidly | Marginal improvement | ~2029 |
+| Full 5MP × 8 cameras simultaneously | Partially (compute-limited) | Yes — this is the killer feature | ~2029–2030 |
+| Larger neural networks | Partially (memory-bandwidth-limited) | Yes | ~2029 |
+| Sub-100ms photon-to-control | Probably not | Likely | ~2029–2030 |
+| Rain/fog/night perception | Limited by camera physics, not compute | Marginal — better denoising possible | ~2029 |
+| True unsupervised operation | No (legal + capability barrier) | Necessary but not sufficient | Unknown |
+
+### Revised Decision Framework: Wait vs. Buy Now
+
+| Factor | Buy HW4 Now (2026) | Wait for AI5 (Late 2027) |
+|---|---|---|
+| **Time without a Tesla** | 0 months | 18+ months |
+| **Hardware ceiling** | AI4: 300 TOPS, standard memory | AI5: 2,000+ TOPS, HBM3 |
+| **Day-one driving experience** | FSD v14.2 — strong and improving | FSD v16/v17 in AI4 emulation — same software, better underlying hardware doing nothing |
+| **3-year experience (by 2029/2030)** | HW4 software plateau likely (may be forked like HW3 was) | AI5-native software unlocks full compute; transformative potential |
+| **Cost** | ~$45K–55K (Model Y) + $99/mo FSD | ~$50K–60K (possible price increase) + $99/mo+ FSD |
+| **Depreciation risk** | HW4 depreciates faster once AI5 is standard | Latest hardware holds value better |
+| **FSD purchase option** | Eliminated after Feb 14, 2026 [FACT] | Subscription only |
+
+### Recommendation for the "Wait for AI5" Buyer
+
+If you genuinely don't need a car until late 2027 and are motivated by having the best possible hardware:
+
+1. **Waiting is defensible** — but understand you're buying a 2029 experience, not a 2027 experience
+2. **The day-one experience will feel identical to buying HW4 today** and running 18 months of software updates
+3. **Monitor these signals** to time your purchase:
+   - FCC filing for AI5 compute module → delivery within ~9 months
+   - VIN pattern changes at Fremont/Austin → production line retooling underway
+   - First AI5 teardown by Munro Live or NotATeslaApp → confirms production vehicles exist
+   - FSD release notes mentioning "AI5-optimized" or "native resolution mode" → emulation period ending
+4. **The real value inflection is ~2029** — if you plan to keep the car 5+ years, AI5 is a materially better long-term bet
+
+---
+
+## 11. Extended Horizon: Late-2027 AI5 Trip Simulations
+
+> These three trip simulations assume a late-2027 AI5 vehicle running FSD v16 or v17 in AI4 emulation mode. The key insight: the experience is driven by **software** (v16/v17), not hardware. AI5's additional compute does not meaningfully contribute until native software is released (~2029).
+
+See the companion report [hermosa_lived_experience.md](hermosa_lived_experience.md) §8 for full narrated simulations of:
+- Grocery run on PCH (few miles)
+- Hermosa → Santa Monica (rush hour)
+- Hermosa → Ojai (weekend trip)
+
+---
+
 *End of forecast. Last updated 2026-02-08.*

@@ -643,4 +643,159 @@ Tesla achieving genuine unsupervised operation in a regulatory-approved pilot pr
 
 ---
 
+## 8. Extended Horizon: Late-2027 AI5 Trip Simulations
+
+> **Context:** You're considering waiting until mid-to-late 2027 to buy a Tesla equipped with AI5 hardware. These simulations project three specific trips on a late-2027 AI5 vehicle running FSD v16/v17.
+>
+> **The critical insight:** AI5 hardware will run in **AI4 emulation mode** at launch (see [forecast report §10](a15_stack_forecast_early_2027.md#10-extended-horizon-what-if-you-wait-until-mid-to-late-2027)). The driving experience is determined by software (v16/v17), not the underlying hardware. A late-2027 AI5 vehicle drives identically to a 2024 HW4 vehicle that has received 18 months of OTA software updates.
+>
+> **Hardware assumed:** AI5 (2,000–2,500 TOPS, HBM3) running in AI4 emulation mode
+> **Software assumed:** FSD v16 or v17 — approximately 12–18 months beyond current v14.2
+
+### Trip 1: Grocery Run on PCH (Hermosa → Vons/Ralphs, ~3 mi each way)
+
+**Route:** Home → residential streets → PCH south → Torrance grocery store → return
+
+#### Narrated Drive (Late 2027, AI5 + FSD v16/v17)
+
+**Departure — residential streets**
+You pull out and engage FSD. The residential zone behavior is refined — v16/v17 still does full stops at stop signs (legally required [FACT]) but the timing feels more natural. The acceleration from stops is smoother, less robotic than current v14 [INFERENCE]. On narrow residential streets with parked cars on both sides, FSD confidently threads the gap at ~20 mph. This was a hesitation point on v14; v16 handles it without slowing to a crawl [INFERENCE].
+
+**PCH southbound**
+FSD merges onto PCH smoothly. Speed holds at 40 mph in the 40 zone. A cyclist appears in the bike lane — FSD gives appropriate clearance without the exaggerated swerve that earlier versions sometimes produced [INFERENCE]. A pedestrian steps into the crosswalk at a mid-block crossing near Hermosa Ave — FSD yields cleanly and proceeds when clear [INFERENCE].
+
+**Parking lot arrival**
+This is where the biggest improvement shows. v16/v17 has better parking lot navigation [SPECULATION] — it can handle the Vons/Ralphs lot entry, navigate to an open spot in the main aisle, and pull in. It's not perfect: tight end-cap spots and spots flanked by large SUVs still cause hesitation [INFERENCE]. But the "disengage at the parking lot entrance" rule from 2026 is now "disengage if the lot is unusually tight."
+
+**Return trip**
+Essentially the same experience in reverse. Total round-trip interventions: 0–1 minor.
+
+#### Scorecard
+
+| Metric | Current (v14, 2026) | Late 2027 (AI5 + v16/v17) | Delta |
+|---|---|---|---|
+| Interventions (minor) | 2–4 | 0–2 | -2 |
+| Interventions (significant) | 0–1 | 0 | -0.5 |
+| Parking lot handling | Disengage at entrance | Engage through main aisles, disengage for tight spots | Meaningful improvement |
+| Feel score | **3/5** | **4/5** | **+1.0** |
+| Key improvement source | — | Software (v16/v17), not AI5 hardware [INFERENCE] | — |
+
+**AI5 hardware contribution:** Negligible for this trip. The grocery run is low-speed, well-mapped surface streets. AI4-class compute handles this comfortably. The improvements you feel are entirely from software maturation [INFERENCE].
+
+---
+
+### Trip 2: Hermosa → Santa Monica (Rush Hour, ~16 mi)
+
+**Route:** Home → PCH → 405 N → Wilshire exit → SM surface streets → destination
+
+#### Narrated Drive (Late 2027, AI5 + FSD v16/v17)
+
+**405 N through Culver City — rush hour stop-and-go**
+The biggest improvement over 2026: gap management. v16/v17 handles aggressive cut-ins without the hard braking that v14 sometimes produced [INFERENCE]. When the inevitable BMW cuts in with 2 car-lengths of space, FSD eases off the accelerator proportionally rather than stomping the brake. The truck behind you doesn't get a scare. **Zero interventions on the 405 segment** [INFERENCE]. This is the single biggest quality-of-life improvement for your commute pattern.
+
+**Santa Monica surface streets**
+Wilshire Blvd: smooth. The hesitation at right turns with distant pedestrians (a v14 quirk) is gone [INFERENCE]. FSD navigates the Wilshire/Lincoln intersection confidently. On Ocean Ave, FSD handles the heavy pedestrian zone with appropriate caution — slowing but not stopping for pedestrians who are clearly on the sidewalk [INFERENCE]. The jaywalker false-stop problem from 2026 is largely resolved, though FSD still errs on the side of caution (correctly so, given PE25012 pressure) [INFERENCE].
+
+**One remaining friction point:** Speed in SM residential zones. FSD still tracks the speed limit closely (25 in a 25) when local traffic flows at 30–35. This is likely a permanent behavior due to regulatory constraints [INFERENCE — PE25012 makes Tesla conservative about speed violations].
+
+**Parking**
+You still park yourself in the 2nd Street garage. Parking structures with tight multi-level spirals remain beyond FSD's reliable capability [INFERENCE]. This may be the last frontier — parking structures are adversarial environments (dim lighting, tight clearances, unpredictable pedestrians) that resist software improvement [SPECULATION].
+
+#### Scorecard
+
+| Metric | Current (v14, 2026) | Late 2027 (AI5 + v16/v17) | Delta |
+|---|---|---|---|
+| Interventions (minor) | 2–4 | 0–1 | -2.5 |
+| Interventions (significant) | 0–1 | 0 | -0.5 |
+| 405 stop-and-go handling | Good but occasional hard brake on cut-ins | Excellent — proportional responses | Major improvement |
+| SM surface streets | Hit-or-miss | Mostly smooth, occasional speed-limit annoyance | Clear improvement |
+| Parking | Manual | Manual | No change |
+| Feel score | **3.5/5** | **4.5/5** | **+1.0** |
+| Key improvement source | — | Software (v16/v17) — 405 gap management + pedestrian intent prediction [INFERENCE] | — |
+
+**AI5 hardware contribution:** Minimal. The 405/SM route is well within AI4 compute capabilities. The improvements are from 18 months of neural network training on fleet data, not from 7× more TOPS [INFERENCE].
+
+---
+
+### Trip 3: Weekend Trip to Ojai (~80 mi, includes Highway 33)
+
+**Route:** Home → 405 N → 101 N → Highway 33 N → Ojai → return
+
+This trip has three distinct segments with very different FSD characteristics:
+
+#### Segment 1: Freeway (405 → 101, ~55 mi) — Feel: 5/5
+
+Identical to the current excellent freeway experience, just slightly more polished. v16/v17 on the 101 through Ventura is essentially autopilot-grade. You read, glance up occasionally, arrive at the 33 exit rested. **Zero interventions expected** [INFERENCE].
+
+#### Segment 2: Highway 33 — The Mountain Section (~20 mi) — Feel: 2.5–3/5
+
+**This is where the trip gets interesting — and where AI5 hardware hits its limits.**
+
+Highway 33 above Casitas Springs is a two-lane mountain road with:
+- Blind curves with no center barrier [FACT]
+- Sections with faded or absent lane markings [INFERENCE]
+- Oncoming traffic inches away on tight curves [FACT]
+- Limited sight distance on switchbacks [FACT]
+- Cyclists on shoulders (weekend recreation traffic) [FACT]
+- Rock debris and road damage [INFERENCE]
+
+**What v16/v17 improves over v14:**
+- Better curve speed prediction — less jerky speed oscillation going into turns [INFERENCE]
+- Improved handling of faded lane markings (uses road-edge detection when center line is absent) [INFERENCE]
+- Slightly more confident on two-lane passing zones [INFERENCE]
+
+**What v16/v17 CANNOT fix (hardware-limited):**
+- **Camera physics on blind curves.** You cannot see around a mountain curve with a forward-facing camera, regardless of compute. The car cannot perceive oncoming traffic until it's visible. This is a fundamental sensor limitation, not a software limitation [FACT].
+- **Night mountain driving.** 5MP cameras in low light on an unlit mountain road have fixed photon collection. AI5's 2,500 TOPS doesn't help if the camera can't see the road [FACT].
+- **Steep grades with loose surface.** Traction is mechanical, not computational [FACT].
+
+**What AI5 could theoretically help with (but doesn't in emulation mode):**
+- Faster inference on degraded road marking inputs (currently compute-constrained on AI4 when multiple cameras have ambiguous input simultaneously) [SPECULATION]
+- Larger occupancy network for predicting road geometry beyond visible range [SPECULATION]
+- But in emulation mode, none of this is active [INFERENCE]
+
+**Realistic Highway 33 experience:**
+You engage FSD on the straighter sections below Casitas Springs. As the road tightens above the lake, you take over for the switchbacks — FSD can technically handle them but its lane-centering feels uncertain on unmarked curves, and you don't trust it with oncoming traffic inches away. You re-engage on the straight descent into Ojai. **1–3 minor interventions, 0–1 significant** on the mountain section [INFERENCE].
+
+#### Segment 3: Ojai Town (~5 mi) — Feel: 3.5/5
+
+Ojai's downtown is a charming small-town grid: low speed (25 mph), pedestrians, diagonal parking, cyclists, the Sunday farmers market crowd [FACT]. FSD handles the grid adequately — it's a simple road geometry. Diagonal parking spots are the main challenge; you'll park yourself at the destination [INFERENCE]. 0–1 minor interventions [INFERENCE].
+
+#### Full Trip Scorecard
+
+| Segment | Distance | Feel Score 2026 | Feel Score Late 2027 | Delta | Bottleneck |
+|---|---|---|---|---|---|
+| Freeway (405 → 101) | 55 mi | 4.5/5 | **5/5** | +0.5 | None — FSD's best domain |
+| Highway 33 (mountain) | 20 mi | 2.5/5 | **2.5–3/5** | +0–0.5 | **Camera physics** — blind curves, no markings |
+| Ojai town | 5 mi | 3/5 | **3.5/5** | +0.5 | Diagonal parking, pedestrians |
+| **Trip overall** | **80 mi** | **3/5** (weighted) | **3.5/5** (weighted) | **+0.5** | Highway 33 drags down the average |
+
+**AI5 hardware contribution:** Effectively zero for this trip. Highway 33 is limited by camera physics (you can't see around blind mountain curves), not compute. The freeway and Ojai town segments don't need more than AI4 compute. This is the trip where the "AI5 makes everything better" narrative breaks down — the bottleneck is sensors and road geometry, not processing power [INFERENCE].
+
+**Honest assessment:** The Ojai trip in late 2027 feels ~0.5 points better than today, driven entirely by software improvements to curve handling and small-town navigation. Highway 33's mountain section remains the one part of your regular driving life where FSD provides minimal value and you're essentially driving manually. This won't change until Tesla adds additional sensing modalities (radar, lidar) or significantly longer-range cameras — none of which are in the AI5 hardware spec [INFERENCE].
+
+---
+
+### Summary: Late-2027 AI5 Vehicle Across All Three Trips
+
+| Trip | Feel (2026) | Feel (Late 2027 AI5) | Delta | AI5 Hardware Impact |
+|---|---|---|---|---|
+| Grocery on PCH | 3/5 | **4/5** | +1.0 | Negligible |
+| → Santa Monica (rush) | 3.5/5 | **4.5/5** | +1.0 | Negligible |
+| → Ojai (weekend) | 3/5 | **3.5/5** | +0.5 | Zero |
+| **Average** | **3.2/5** | **4.0/5** | **+0.8** | **Negligible — all gains from software** |
+
+### The Bottom Line for the "Wait for AI5" Buyer
+
+The late-2027 AI5 experience is **genuinely good** — a 4/5 average across your regular trips is comfortable, low-stress driving where FSD handles 85–95% of the work. But this improvement comes from **18 months of software maturation**, not from AI5 hardware. A buyer who purchased an HW4 vehicle in early 2026 and received the same OTA updates would have an essentially identical driving experience.
+
+The AI5 hardware is an investment in 2029–2030, when native software unlocks:
+- Full simultaneous 5MP × 8 camera processing
+- Larger neural networks with better edge-case handling
+- Potentially sub-100ms photon-to-control latency
+
+If you plan to keep the car 5+ years, AI5 is the better long-term bet. If you plan to keep it 3–4 years, the hardware difference is irrelevant to your ownership experience.
+
+---
+
 *End of lived experience report. Last updated 2026-02-08.*
