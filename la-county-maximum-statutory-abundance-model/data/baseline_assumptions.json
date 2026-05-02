@@ -1,0 +1,134 @@
+{
+  "_meta": {
+    "geography": "Los Angeles County, California (incorporated cities + unincorporated)",
+    "anchor_year": 2024,
+    "currency": "2024 USD unless suffixed _nominal",
+    "notes": "User-provided baseline values are taken as authoritative anchors. Source labels indicate the canonical dataset; specific URLs and microdata files are not fetched. Mark any value with SOURCE_NEEDED if not directly substantiated by a public release.",
+    "evidence_legend": {
+      "strong": "directly observed in published government dataset within last 3 years",
+      "medium": "published but with methodological caveats or older vintage",
+      "weak": "literature consensus but wide range of estimates",
+      "speculative": "directional only; quantification is illustrative"
+    }
+  },
+
+  "housing": {
+    "housing_units_2024": {"value": 3709507, "source": "Census QuickFacts LA County (HSG010224)", "evidence": "strong"},
+    "building_permits_2024": {"value": 19809, "source": "Census Building Permits Survey / HCD APR cross-check", "evidence": "strong"},
+    "median_owner_occupied_value_2020_2024": {"value": 834200, "source": "ACS 5-yr 2020-2024 (HSG495224)", "evidence": "strong"},
+    "median_gross_rent_2020_2024": {"value": 1954, "source": "ACS 5-yr 2020-2024 (HSG860224)", "evidence": "strong"},
+    "median_smoc_with_mortgage_2020_2024": {"value": 3160, "source": "ACS 5-yr 2020-2024 (HSG770224)", "evidence": "strong"},
+    "vacancy_rate_estimated": {"value": 0.075, "source": "ACS-derived (housing_units - households)/housing_units", "evidence": "medium"},
+    "occupancy_rate_assumed": {"value": 0.97, "source": "model assumption: physical occupancy after lease-up of new units", "evidence": "medium"},
+    "annual_demolition_loss_rate": {"value": 0.0012, "source": "California HCD APR loss data; LA-specific estimate", "evidence": "weak"}
+  },
+
+  "households": {
+    "households_2020_2024": {"value": 3416449, "source": "ACS 5-yr 2020-2024 (HSD410224)", "evidence": "strong"},
+    "persons_per_household": {"value": 2.81, "source": "ACS 5-yr 2020-2024 (HSD310224)", "evidence": "strong"},
+    "persons_per_household_floor": {"value": 2.5, "source": "model assumption: minimum household size as crowding eases", "evidence": "weak"},
+    "persons_per_household_ceiling": {"value": 3.21, "source": "model assumption: +0.40 over baseline before severe crowding", "evidence": "weak"}
+  },
+
+  "population": {
+    "estimated_population_2024": {"value": 9851800, "source": "derived: households * persons_per_household; aligns with CA DOF E-1 2024 estimate range", "evidence": "strong"},
+    "peer_metro_rent_anchor": {"value": 1500, "source": "weighted average of national large-metro median rent ex-coastal-CA, ACS-derived", "evidence": "medium"},
+    "latent_demand_elasticity_mu": {"value": 0.20, "source": "model parameter; bracketed 0.10-0.30. Hsieh-Moretti 2019 implied migration suppression", "evidence": "weak"}
+  },
+
+  "income": {
+    "median_household_income_2024": {"value": 90112, "source": "ACS 5-yr 2020-2024 in 2024$ (INC110224)", "evidence": "strong"},
+    "per_capita_income_2024": {"value": 45792, "source": "ACS 5-yr 2020-2024 in 2024$ (INC910224)", "evidence": "strong"},
+    "poverty_rate_2024": {"value": 0.133, "source": "ACS 5-yr 2020-2024 (PVY020224)", "evidence": "strong"},
+    "real_wage_drift_annual": {"value": 0.005, "source": "long-run US real wage growth, BLS", "evidence": "medium"},
+    "agglomeration_elasticity_per_density_doubling": {"value": 0.03, "source": "Combes & Gobillon 2015 handbook chapter (range 0.02-0.05)", "evidence": "medium"}
+  },
+
+  "business": {
+    "employer_establishments_2023": {"value": 304988, "source": "Census County Business Patterns 2023", "evidence": "strong"},
+    "total_employment_2023": {"value": 3987736, "source": "Census CBP 2023", "evidence": "strong"},
+    "annual_payroll_2023_usd": {"value": 299600000000, "source": "Census CBP 2023", "evidence": "strong"},
+    "accommodation_food_sales_2022_usd": {"value": 44000000000, "source": "Economic Census 2022 NAICS 72", "evidence": "strong"},
+    "mean_commute_minutes_2024": {"value": 30.4, "source": "ACS 5-yr 2020-2024", "evidence": "strong"},
+    "permitting_friction_index_baseline": {"value": 1.00, "source": "model index; baseline = 2024 actual friction", "evidence": "medium"}
+  },
+
+  "homelessness": {
+    "estimated_unsheltered_population_la_county": {"value": 75000, "source": "LAHSA 2024 Greater LA Homeless Count (countywide unsheltered + sheltered ~75k)", "evidence": "medium"},
+    "cost_per_unsheltered_person_year_low": {"value": 30000, "source": "Flaming/Toros LA Economic Roundtable (low end)", "evidence": "weak"},
+    "cost_per_unsheltered_person_year_central": {"value": 42500, "source": "Flaming/Toros LA Economic Roundtable / HUD HMIS midrange", "evidence": "weak"},
+    "cost_per_unsheltered_person_year_high": {"value": 55000, "source": "Flaming/Toros LA Economic Roundtable (high end, includes ER, jail, EMS)", "evidence": "weak"},
+    "hpi_baseline": {"value": 50, "source": "model index, dimensionless 0-100, anchored to 2024 conditions", "evidence": "speculative"},
+    "hpi_weights": {
+      "rent_to_income": {"value": 12, "source": "Colburn & Aldern 2022 (Homelessness is a Housing Problem) - rent level dominates", "evidence": "medium"},
+      "rent_growth": {"value": 6, "source": "Colburn & Aldern 2022 - secondary effect", "evidence": "medium"},
+      "eli_supply": {"value": -5, "source": "extremely-low-income housing availability, Glaeser et al.", "evidence": "weak"},
+      "employment_growth": {"value": -4, "source": "labor-market exit literature", "evidence": "medium"},
+      "residual_income": {"value": -3, "source": "income-after-housing channel", "evidence": "weak"}
+    },
+    "eli_share_of_new_units_baseline": {"value": 0.08, "source": "HCD APR / LIHTC pipeline LA share", "evidence": "medium"}
+  },
+
+  "fiscal": {
+    "property_tax_rate": {"value": 0.0125, "source": "Prop 13 base 1% + LA County avg overrides (school bonds, etc.)", "evidence": "strong"},
+    "la_share_post_eraf": {"value": 0.55, "source": "LA County share of 1% general levy after ERAF redirect", "evidence": "medium"},
+    "sales_tax_rate_combined": {"value": 0.0975, "source": "LA County combined state+local sales tax", "evidence": "strong"},
+    "sales_tax_local_share_of_combined": {"value": 0.10, "source": "1% Bradley-Burns local + ~0.5% Measure LA-area district avg of 9.75%", "evidence": "medium"},
+    "annual_taxable_spend_per_household": {"value": 18000, "source": "BLS CES regional", "evidence": "medium"},
+    "construction_materials_taxable_per_unit": {"value": 80000, "source": "ULI 2023 LA infill cost study (materials portion)", "evidence": "medium"},
+    "service_cost_per_capita_annual": {"value": 1500, "source": "marginal LA County local services per new resident; lower than average general-fund per-capita because schools (state-funded), much of police/fire/parks is fixed cost", "evidence": "weak"},
+    "infrastructure_capex_per_unit_one_time": {"value": 45000, "source": "ULI 2023 LA infill capex (water/sewer/road marginal)", "evidence": "medium"},
+    "infrastructure_opex_per_unit_annual": {"value": 600, "source": "implied from utility OPEX allocations", "evidence": "weak"},
+    "income_tax_state_marginal_for_growth": {"value": 0.085, "source": "CA effective marginal on incremental household income, FTB", "evidence": "medium"},
+    "income_tax_share_returned_to_la_infrastructure": {"value": 0.05, "source": "weak share via state grants, transit, etc.", "evidence": "speculative"},
+    "utility_revenue_per_unit_annual": {"value": 1800, "source": "LADWP/SCE/SoCalGas avg residential billings", "evidence": "medium"}
+  },
+
+  "construction": {
+    "permit_to_completion_lag_cdf": {
+      "year_1": 0.15,
+      "year_2": 0.45,
+      "year_3": 0.75,
+      "year_4": 0.90,
+      "year_5": 1.00,
+      "source": "Glaeser & Gyourko 2018 / NMHC pipeline data",
+      "evidence": "medium"
+    },
+    "construction_labor_capacity_growth_cap_per_year": {"value": 1.40, "source": "rolling 3-yr completions x 1.40 max; building trades labor pool elasticity", "evidence": "weak"},
+    "construction_cost_per_unit_baseline_usd": {"value": 525000, "source": "ULI 2023 LA County midrise infill all-in", "evidence": "medium"},
+    "construction_cost_inflation_baseline": {"value": 0.030, "source": "ENR construction cost index trend", "evidence": "medium"},
+    "modular_pattern_book_productivity_lift": {"value": 0.12, "source": "factory-built / pattern-book savings vs site-built", "evidence": "weak"}
+  },
+
+  "utilities": {
+    "ladwp_baseline_interconnection_lag_months": {"value": 14, "source": "SOURCE_NEEDED - LADWP queue tracking is opaque; estimate from developer surveys", "evidence": "weak"},
+    "sce_baseline_interconnection_lag_months": {"value": 9, "source": "SOURCE_NEEDED - SCE multifamily energization median", "evidence": "weak"},
+    "transformer_lead_time_months_baseline": {"value": 18, "source": "SOURCE_NEEDED - distribution transformer procurement lead time post-2022", "evidence": "weak"},
+    "utility_cost_per_new_connection_usd": {"value": 12000, "source": "marginal distribution upgrade per multifamily unit", "evidence": "weak"},
+    "utility_capacity_baseline_units_per_year": {"value": 22000, "source": "implied from current absorption", "evidence": "medium"},
+    "utility_capacity_max_multiplier": {"value": 1.5, "source": "model cap to prevent runaway feedback", "evidence": "speculative"}
+  },
+
+  "macro": {
+    "real_interest_rate_baseline": {"value": 0.025, "source": "10y TIPS 2024 average", "evidence": "strong"},
+    "mortgage_rate_30y_baseline": {"value": 0.069, "source": "Freddie Mac PMMS 2024 average", "evidence": "strong"}
+  },
+
+  "elasticities": {
+    "rent_to_supply_alpha_low": -0.20,
+    "rent_to_supply_alpha_central": -0.30,
+    "rent_to_supply_alpha_high": -0.45,
+    "rent_to_supply_alpha_source": "Hsieh-Moretti 2019 implied ~-0.25; Anenberg-Kung 2014 JUE submarket -0.40 to -0.50; Baum-Snow & Han 2024 metro ~-0.20",
+    "rent_to_supply_alpha_evidence": "medium",
+    "rent_to_income_beta": 0.70,
+    "rent_to_income_beta_source": "Saiz 2010 region; long-run income pass-through to rent",
+    "rent_to_income_beta_evidence": "medium",
+    "income_composition_lambda": 0.15,
+    "income_composition_lambda_source": "model parameter; share of moderate-income inflow that pulls median down",
+    "income_composition_lambda_evidence": "weak",
+    "commercial_vitality_to_density_elasticity": 0.25,
+    "commercial_vitality_to_density_evidence": "weak",
+    "commercial_vitality_to_friction_elasticity": -0.30,
+    "commercial_vitality_to_friction_evidence": "weak"
+  }
+}

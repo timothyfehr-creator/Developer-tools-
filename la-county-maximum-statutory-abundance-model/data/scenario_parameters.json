@@ -1,0 +1,241 @@
+{
+  "_meta": {
+    "description": "Base parameters and per-scenario / per-variant overrides. Resolved by src/scenarios.resolve_params() via dict-merge: BASE -> SCENARIO -> UTIL_VARIANT -> FISCAL_VARIANT.",
+    "scenarios": ["A_baseline", "B_moderate", "C_max_central", "D_max_high_build", "E_max_drag", "F_legal_collision"],
+    "utility_variants": ["util_improved", "util_current_drag", "util_severe_bottleneck"],
+    "fiscal_capture_variants": ["fcap_none", "fcap_partial", "fcap_high"]
+  },
+
+  "base": {
+    "horizon_start": 2026,
+    "horizon_end": 2045,
+
+    "legal_capacity_baseline_units": 90000,
+    "legal_capacity_phase_in_years": 5,
+    "zoning_capacity_multiplier": 1.0,
+    "transit_corridor_uplift": 0.0,
+    "missing_middle_share_legalized": 0.0,
+    "office_to_residential_capacity": 0,
+    "religious_land_capacity": 0,
+    "public_land_capacity": 0,
+
+    "shot_clock_multiplier": 1.0,
+    "ministerial_share": 0.15,
+    "local_resistance_haircut": 0.45,
+    "state_backstop_effectiveness": 0.0,
+    "litigation_delay_years": 0.5,
+    "building_dept_staffing_index": 1.0,
+    "objective_standard_clarity": 0.5,
+
+    "construction_labor_capacity_baseline_units": 28000,
+    "construction_cost_inflation": 0.030,
+    "financing_cost_index": 1.0,
+    "developer_confidence": 0.6,
+    "demolition_loss_rate": 0.0012,
+    "modular_productivity_lift": 0.0,
+
+    "utility_capacity_baseline_units": 22000,
+    "utility_lag_months": 12,
+    "transformer_constraint_factor": 1.0,
+    "infrastructure_funding_adequacy": 0.6,
+
+    "rent_alpha": -0.30,
+    "rent_beta_income": 0.70,
+    "rent_drift_real": 0.005,
+    "latent_demand_mu": 0.20,
+    "filtering_lag_years": 7,
+
+    "agglomeration_per_density_doubling": 0.03,
+    "income_composition_lambda": 0.15,
+    "moderate_share_baseline": 0.30,
+    "moderate_share_inflow_lift_per_pct_pop_growth": 0.4,
+
+    "commercial_density_elasticity": 0.25,
+    "commercial_friction_elasticity": -0.30,
+    "permitting_friction_index": 1.00,
+
+    "fiscal_capture_rate": 0.30,
+    "service_cost_per_capita": 2800,
+    "service_cost_growth": 0.025,
+
+    "ladwp_modernization_index": 1.0,
+    "value_capture_feasibility_drag": 0.05,
+    "political_reversal_risk_annual": 0.02
+  },
+
+  "scenarios": {
+    "A_baseline": {
+      "label": "Baseline / current trajectory",
+      "zoning_capacity_multiplier": 1.40,
+      "missing_middle_share_legalized": 0.05,
+      "transit_corridor_uplift": 0.10,
+      "office_to_residential_capacity": 8000,
+      "shot_clock_multiplier": 1.05,
+      "ministerial_share": 0.20,
+      "local_resistance_haircut": 0.40,
+      "state_backstop_effectiveness": 0.10,
+      "objective_standard_clarity": 0.50,
+      "permitting_friction_index": 1.00,
+      "construction_labor_capacity_baseline_units": 28000,
+      "developer_confidence": 0.55,
+      "litigation_delay_years": 0.5,
+      "legal_capacity_phase_in_years": 2
+    },
+    "B_moderate": {
+      "label": "Moderate reform: tighter HCD enforcement, partial preemption",
+      "zoning_capacity_multiplier": 1.45,
+      "missing_middle_share_legalized": 0.20,
+      "transit_corridor_uplift": 0.20,
+      "office_to_residential_capacity": 25000,
+      "religious_land_capacity": 8000,
+      "shot_clock_multiplier": 1.30,
+      "ministerial_share": 0.40,
+      "local_resistance_haircut": 0.30,
+      "state_backstop_effectiveness": 0.40,
+      "objective_standard_clarity": 0.70,
+      "permitting_friction_index": 0.80,
+      "construction_labor_capacity_baseline_units": 32000,
+      "developer_confidence": 0.65,
+      "litigation_delay_years": 1.0
+    },
+    "C_max_central": {
+      "label": "Maximum Statutory Abundance — central case",
+      "zoning_capacity_multiplier": 2.20,
+      "missing_middle_share_legalized": 0.55,
+      "transit_corridor_uplift": 0.45,
+      "office_to_residential_capacity": 80000,
+      "religious_land_capacity": 30000,
+      "public_land_capacity": 25000,
+      "shot_clock_multiplier": 1.85,
+      "ministerial_share": 0.75,
+      "local_resistance_haircut": 0.18,
+      "state_backstop_effectiveness": 0.70,
+      "objective_standard_clarity": 0.85,
+      "permitting_friction_index": 0.55,
+      "construction_labor_capacity_baseline_units": 55000,
+      "developer_confidence": 0.75,
+      "modular_productivity_lift": 0.08,
+      "litigation_delay_years": 1.5,
+      "infrastructure_funding_adequacy": 0.75
+    },
+    "D_max_high_build": {
+      "label": "Maximum Statutory Abundance — high build / high demand",
+      "zoning_capacity_multiplier": 2.60,
+      "missing_middle_share_legalized": 0.65,
+      "transit_corridor_uplift": 0.55,
+      "office_to_residential_capacity": 110000,
+      "religious_land_capacity": 40000,
+      "public_land_capacity": 40000,
+      "shot_clock_multiplier": 2.10,
+      "ministerial_share": 0.85,
+      "local_resistance_haircut": 0.12,
+      "state_backstop_effectiveness": 0.85,
+      "objective_standard_clarity": 0.90,
+      "permitting_friction_index": 0.45,
+      "construction_labor_capacity_baseline_units": 80000,
+      "developer_confidence": 0.88,
+      "modular_productivity_lift": 0.15,
+      "financing_cost_index": 0.85,
+      "litigation_delay_years": 1.0,
+      "infrastructure_funding_adequacy": 0.90,
+      "latent_demand_mu": 0.28
+    },
+    "E_max_drag": {
+      "label": "Maximum Statutory Abundance — implementation drag",
+      "zoning_capacity_multiplier": 2.20,
+      "missing_middle_share_legalized": 0.55,
+      "transit_corridor_uplift": 0.45,
+      "office_to_residential_capacity": 80000,
+      "religious_land_capacity": 30000,
+      "public_land_capacity": 25000,
+      "shot_clock_multiplier": 1.40,
+      "ministerial_share": 0.55,
+      "local_resistance_haircut": 0.35,
+      "state_backstop_effectiveness": 0.40,
+      "objective_standard_clarity": 0.65,
+      "permitting_friction_index": 0.80,
+      "construction_labor_capacity_baseline_units": 38000,
+      "developer_confidence": 0.55,
+      "construction_cost_inflation": 0.055,
+      "financing_cost_index": 1.20,
+      "litigation_delay_years": 2.5,
+      "infrastructure_funding_adequacy": 0.45
+    },
+    "F_legal_collision": {
+      "label": "Legal collision: housing core upheld, commercial/fiscal narrowed",
+      "zoning_capacity_multiplier": 2.00,
+      "missing_middle_share_legalized": 0.50,
+      "transit_corridor_uplift": 0.40,
+      "office_to_residential_capacity": 60000,
+      "religious_land_capacity": 22000,
+      "public_land_capacity": 15000,
+      "shot_clock_multiplier": 1.60,
+      "ministerial_share": 0.65,
+      "local_resistance_haircut": 0.25,
+      "state_backstop_effectiveness": 0.55,
+      "objective_standard_clarity": 0.78,
+      "permitting_friction_index": 0.85,
+      "construction_labor_capacity_baseline_units": 45000,
+      "developer_confidence": 0.65,
+      "litigation_delay_years": 2.0,
+      "value_capture_feasibility_drag": 0.12,
+      "infrastructure_funding_adequacy": 0.55
+    }
+  },
+
+  "utility_variants": {
+    "util_improved": {
+      "utility_capacity_baseline_units": 75000,
+      "utility_lag_months": 5,
+      "transformer_constraint_factor": 0.6,
+      "ladwp_modernization_index": 1.5
+    },
+    "util_current_drag": {
+      "utility_capacity_baseline_units": 38000,
+      "utility_lag_months": 12,
+      "transformer_constraint_factor": 1.0,
+      "ladwp_modernization_index": 1.0
+    },
+    "util_severe_bottleneck": {
+      "utility_capacity_baseline_units": 18000,
+      "utility_lag_months": 22,
+      "transformer_constraint_factor": 1.5,
+      "ladwp_modernization_index": 0.7
+    }
+  },
+
+  "fiscal_capture_variants": {
+    "fcap_none": {
+      "fiscal_capture_rate": 0.0
+    },
+    "fcap_partial": {
+      "fiscal_capture_rate": 0.30
+    },
+    "fcap_high": {
+      "fiscal_capture_rate": 0.60
+    }
+  },
+
+  "milestone_years": [2030, 2035, 2040, 2045],
+
+  "sensitivity_parameters": [
+    {"name": "construction_labor_capacity_baseline_units", "low_mult": 0.7, "high_mult": 1.3},
+    {"name": "financing_cost_index", "low_mult": 0.85, "high_mult": 1.20},
+    {"name": "utility_lag_months", "low_mult": 0.6, "high_mult": 1.6},
+    {"name": "infrastructure_funding_adequacy", "low_mult": 0.7, "high_mult": 1.2},
+    {"name": "litigation_delay_years", "low_mult": 0.5, "high_mult": 2.0},
+    {"name": "local_resistance_haircut", "low_mult": 0.6, "high_mult": 1.6},
+    {"name": "latent_demand_mu", "low_mult": 0.5, "high_mult": 1.5},
+    {"name": "rent_alpha", "low_mult": 0.65, "high_mult": 1.5},
+    {"name": "construction_cost_inflation", "low_mult": 0.5, "high_mult": 2.0},
+    {"name": "construction_labor_capacity_growth_cap_per_year", "low_mult": 0.85, "high_mult": 1.15, "fallback": 1.40},
+    {"name": "income_composition_lambda", "low_mult": 0.5, "high_mult": 1.5},
+    {"name": "commercial_friction_elasticity", "low_mult": 0.6, "high_mult": 1.6},
+    {"name": "cost_per_unsheltered_person_year_central", "low_mult": 0.7, "high_mult": 1.3, "fallback": 42500},
+    {"name": "fiscal_capture_rate", "low_mult": 0.0, "high_mult": 2.0},
+    {"name": "infrastructure_capex_per_unit_one_time", "low_mult": 0.7, "high_mult": 1.5, "fallback": 45000},
+    {"name": "la_share_post_eraf", "low_mult": 0.7, "high_mult": 1.2, "fallback": 0.55},
+    {"name": "value_capture_feasibility_drag", "low_mult": 0.5, "high_mult": 2.5},
+    {"name": "political_reversal_risk_annual", "low_mult": 0.0, "high_mult": 3.0}
+  ]
+}
