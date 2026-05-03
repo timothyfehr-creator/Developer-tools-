@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>The legal lever is the easy one — LA County housing under maximum state preemption</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --red: #E3120B;
+    --dark: #121212;
+    --ink: #2a2a2a;
+    --gray-d: #404040;
+    --gray-m: #7a7a7a;
+    --gray-l: #d6d6d6;
+    --rule: #b8b8b8;
+    --bg-panel: #f4f4f4;
+    --bg-page: #fafafa;
+    --green: #1f7a4f;
+    --amber: #c47a00;
+    --blue: #2e6e9e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg-page);
+    color: var(--ink);
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1180px; margin: 0 auto; padding: 28px 28px 60px; }
+
+  .masthead {
+    border-top: 4px solid var(--red);
+    padding: 14px 0 10px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--rule);
+  }
+  .masthead .brand {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+  .masthead .breadcrumb {
+    font-size: 12px;
+    color: var(--gray-m);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+  }
+
+  h1.headline {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 800;
+    font-size: 44px;
+    line-height: 1.05;
+    margin: 30px 0 8px;
+    color: var(--dark);
+    letter-spacing: -0.5px;
+  }
+  h1.headline .accent { color: var(--red); }
+  p.deck {
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--gray-d);
+    margin: 0 0 22px;
+    max-width: 820px;
+  }
+
+  .strap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 18px 0 32px;
+    padding: 16px 18px;
+    background: var(--bg-panel);
+    border-left: 3px solid var(--red);
+  }
+  .strap .stat {
+    border-right: 1px solid var(--gray-l);
+    padding-right: 12px;
+  }
+  .strap .stat:last-child { border-right: none; }
+  .strap .stat .num {
+    font-family: Georgia, serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--dark);
+    line-height: 1.05;
+  }
+  .strap .stat .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--gray-m);
+    margin-top: 4px;
+  }
+
+  section { margin: 36px 0; }
+  h2 {
+    font-family: Georgia, serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--dark);
+    margin: 0 0 4px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+  h2 .num {
+    color: var(--red);
+    font-weight: 700;
+    margin-right: 10px;
+  }
+  .section-deck {
+    color: var(--gray-d);
+    font-size: 14px;
+    margin: 0 0 18px;
+    font-style: italic;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .grid-2-asym {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 22px;
+  }
+
+  .panel {
+    background: white;
+    border: 1px solid var(--gray-l);
+    padding: 14px 14px 12px;
+  }
+  .panel img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .panel .caption {
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: var(--gray-d);
+    line-height: 1.4;
+  }
+  .panel .caption strong { color: var(--dark); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 6px 0;
+  }
+  th, td {
+    text-align: left;
+    padding: 7px 8px;
+    border-bottom: 1px solid var(--gray-l);
+  }
+  thead tr { border-bottom: 1.5px solid var(--dark); }
+  th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--gray-m);
+    font-weight: 600;
+  }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.hero { background: #fff6f5; }
+  tr.hero td { font-weight: 600; }
+
+  blockquote.pull {
+    border-left: 4px solid var(--red);
+    margin: 22px 0;
+    padding: 8px 16px;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--dark);
+    background: white;
+  }
+
+  ul.findings {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+  }
+  ul.findings li {
+    padding: 9px 0 9px 24px;
+    border-bottom: 1px solid var(--gray-l);
+    position: relative;
+    font-size: 14px;
+  }
+  ul.findings li::before {
+    content: "▶";
+    color: var(--red);
+    position: absolute;
+    left: 0;
+    top: 9px;
+    font-size: 11px;
+  }
+  ul.findings li strong { color: var(--dark); }
+
+  .footer {
+    margin-top: 50px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    color: var(--gray-m);
+    line-height: 1.5;
+  }
+  .footer p { margin: 6px 0; }
+  .footer code {
+    background: var(--bg-panel);
+    padding: 1px 5px;
+    border-radius: 2px;
+    font-size: 11.5px;
+  }
+
+  @media (max-width: 760px) {
+    .grid-2, .grid-2-asym { grid-template-columns: 1fr; }
+    .strap { grid-template-columns: 1fr 1fr; }
+    .strap .stat:nth-child(2) { border-right: none; }
+    h1.headline { font-size: 32px; }
+    p.deck { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="masthead">
+    <div class="brand">LA Abundance Model · Briefing</div>
+    <div class="breadcrumb">Scenario forecasts to 2045</div>
+  </div>
+
+  <h1 class="headline">The legal lever is <span class="accent">the easy one</span></h1>
+  <p class="deck">If California enacted the most aggressive supply-side housing reforms it could pass without a constitutional amendment, what would actually happen in Los Angeles County by 2045? Mostly: not what the discourse predicts.</p>
+
+  <div class="strap">
+    <div class="stat">
+      <div class="num">1.6m</div>
+      <div class="label">Net new housing units by 2045 in the central reform case</div>
+    </div>
+    <div class="stat">
+      <div class="num">38×</div>
+      <div class="label">Spread between best and worst execution outcomes — same legal package</div>
+    </div>
+    <div class="stat">
+      <div class="num">+9%</div>
+      <div class="label">Real rent rise under abundance — vs <strong>+18%</strong> under no-reform baseline</div>
+    </div>
+    <div class="stat">
+      <div class="num">$11.7b</div>
+      <div class="label">Annual fiscal dividend by 2045, of which only $3.3b funds infrastructure</div>
+    </div>
+  </div>
+
+  <section>
+    <h2><span class="num">01</span>The headline finding</h2>
+    <p class="section-deck">Across six scenarios, identical reforms produce wildly different outcomes depending on how — and whether — institutions execute.</p>
+    <div class="panel">
+      <img src="dashboard/hero_cumulative.png" alt="Cumulative net new housing units, LA County, by scenario, 2026 to 2045" />
+      <div class="caption">
+        <strong>How to read it:</strong> Each line is a scenario assuming the same Maximum Statutory Abundance reform package passes — but with different assumptions about utility execution, fiscal capture, and local compliance. The <strong style="color:var(--red);">red Max abundance line</strong> is the central case. <strong style="color:#8a3030;">Implementation drag</strong> is what happens if the package passes but utilities, labor and HCD enforcement do not. The 38× spread is the model's central message: legal reform is necessary; execution is decisive.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span>The five-gate funnel: where housing leaks out</h2>
+    <p class="section-deck">Even under maximum legal preemption, only one in eleven legally allowed units actually gets occupied.</p>
+    <div class="grid-2-asym">
+      <div class="panel">
+        <img src="dashboard/funnel.png" alt="Five-gate funnel from legal capacity to occupied units in Scenario C" />
+        <div class="caption">
+          Legal capacity to occupied units, cumulative 2026-2045, Scenario C max central case. Each stage drops 25-50% of the prior stage. Building permits convert to completions; completions wait for utility energization; energization waits for occupancy. Each gate is a real institutional process — not an artifact of pessimism.
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:Georgia,serif; font-size:18px; margin:0 0 10px; color:var(--dark);">Why the funnel matters</h3>
+        <p style="font-size:14px; margin:0 0 12px;">The discourse around California housing policy treats "passing the law" as roughly equivalent to "building the housing." It is not. Each of the five funnel stages — entitlement, permit, completion, energization, occupation — has its own physical, financial, and institutional bottlenecks. Most policy analysis stops at stage two.</p>
+        <ul class="findings">
+          <li><strong>Stage 1 → 2:</strong> Local resistance, litigation, ministerial-share gaps</li>
+          <li><strong>Stage 2 → 3:</strong> Permit processing capacity, building department staffing</li>
+          <li><strong>Stage 3 → 4:</strong> Construction labor, materials, financing, insurance</li>
+          <li><strong>Stage 4 → 5:</strong> LADWP / SCE / SoCalGas interconnection — the binding constraint</li>
+          <li><strong>Stage 5 → 6:</strong> Inspections, occupancy permits, lease-up</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <blockquote class="pull">
+    "Legal authority is the easiest of the binding constraints to fix — and the least determinative of outcomes once fixed."
+  </blockquote>
+
+  <section>
+    <h2><span class="num">03</span>Rent eases — but does not fall</h2>
+    <p class="section-deck">In every scenario, real rent in 2045 is higher than in 2024. Abundance buys ~10 percentage points of rent moderation, not a rent collapse.</p>
+    <div class="grid-2">
+      <div class="panel">
+        <img src="dashboard/real_rent.png" alt="Median gross rent, real 2024 dollars, by scenario" />
+        <div class="caption">Real rent rises in every scenario. Even maximum abundance produces a +9% real rent path; the no-reform baseline is +18%. The improvement is meaningful — about $170/month/HH by 2045 vs counterfactual — but the headline "rents fall" claim is not supported.</div>
+      </div>
+      <div class="panel">
+        <img src="dashboard/population.png" alt="LA County population by scenario" />
+        <div class="caption">The reason rent does not fall: latent demand absorbs new supply. As LA becomes more affordable relative to peer metros, suppressed migration unlocks. More building means more people, not (much) lower rent. Population reaches 11.6-12.0m under abundance vs 11.1m baseline.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span>What welfare actually looks like</h2>
+    <p class="section-deck">Median household income is roughly flat across scenarios. Residual income after rent — the real welfare metric — improves by about $2,100 per household per year under abundance.</p>
+    <div class="grid-2">
+      <div class="panel">
+        <img src="dashboard/residual_income.png" alt="Median household residual income after rent, real 2024 dollars" />
+        <div class="caption">Residual income (median HH income minus annualized rent) is the honest welfare measure. It rises ~$2,100/HH/yr in abundance scenarios over baseline. Across 4m households, that's ~$8b/yr of household-level real welfare gain. Modest but real.</div>
+      </div>
+      <div class="panel">
+        <img src="dashboard/hpi.png" alt="Homelessness pressure index by scenario" />
+        <div class="caption">Homelessness pressure index improves materially in abundance scenarios during 2030-2040, then partially rebounds. The lever buys a 5-15 year window of meaningful pressure reduction — not permanent abolition. Sustained reduction requires non-housing complements: PSH, mental health, addiction services.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">05</span>The fiscal dividend exists — but leaks</h2>
+    <p class="section-deck">Growth produces real new revenue. Most of it does not flow to the jurisdictions bearing marginal infrastructure cost.</p>
+    <div class="grid-2-asym">
+      <div class="panel">
+        <img src="dashboard/fiscal_bars.png" alt="2045 net public revenue and infrastructure reinvestment by scenario" />
+        <div class="caption">Solid bars: net new public revenue. Hatched bars: portion captured for LA infrastructure. The gap is fiscal leakage — Prop 13 / ERAF redirects to schools, state income tax accrues to Sacramento, special districts take their share. Even the best scenario captures barely a third of what growth generates.</div>
+      </div>
+      <div>
+        <h3 style="font-family:Georgia,serif; font-size:18px; margin:0 0 10px; color:var(--dark);">Why fiscal alignment matters</h3>
+        <p style="font-size:14px; margin:0 0 12px;">If a city approves 200 new units, it captures roughly 20-25% of the resulting property tax (after ERAF). It bears ~100% of the marginal school capacity, fire response, water connection, road maintenance and parks-and-recreation cost. The math says: obstruct.</p>
+        <p style="font-size:14px; margin:0 0 0;">This is the structural reason California has not built. The Maximum Statutory Abundance package partially addresses it via expanded EIFDs, value capture and state matching grants — but cannot solve it without either a constitutional amendment on property-tax allocation or a separate ballot initiative. Most of the fiscal leakage stays.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">06</span>Which constraint actually decides outcomes?</h2>
+    <p class="section-deck">The discourse focuses on legal authority. The model says it is the least binding constraint — once it is fixed.</p>
+    <div class="panel">
+      <img src="dashboard/bottleneck.png" alt="Ranked bindingness of constraints on LA housing production" />
+      <div class="caption">Bindingness is a model-derived assessment of how much each constraint moves 2045 outcomes within plausible parameter ranges. Physical delivery (utilities, transformers, labor, materials) drives the largest variance across scenarios. Legal authority — the discourse's main focus — sits last. This ordering is the project's central practical implication.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">07</span>Honest forecast ranges, by scenario</h2>
+    <p class="section-deck">Point estimates from the model, widened by red-team adjustment and sensitivity analysis. Read as ranges, not forecasts.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Cum new units 2045</th>
+          <th>Population 2045</th>
+          <th>Real rent 2045</th>
+          <th>Residual income</th>
+          <th>HPI 2045</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A</strong> Baseline (no reform)</td>
+          <td class="num">200-450k</td>
+          <td class="num">10.8-11.3m</td>
+          <td class="num">$2,250-$2,400</td>
+          <td class="num">$61-64k</td>
+          <td class="num">52-60</td>
+        </tr>
+        <tr>
+          <td><strong>B</strong> Moderate reform</td>
+          <td class="num">450-750k</td>
+          <td class="num">11.3-11.9m</td>
+          <td class="num">$2,180-$2,320</td>
+          <td class="num">$62-64k</td>
+          <td class="num">48-55</td>
+        </tr>
+        <tr class="hero">
+          <td><strong>C</strong> Max abundance — central</td>
+          <td class="num">800k-1.4m</td>
+          <td class="num">11.4-12.0m</td>
+          <td class="num">$2,050-$2,180</td>
+          <td class="num">$63-66k</td>
+          <td class="num">38-46</td>
+        </tr>
+        <tr>
+          <td><strong>D</strong> High build / high demand</td>
+          <td class="num">1.4-1.9m</td>
+          <td class="num">11.8-12.7m</td>
+          <td class="num">$2,030-$2,180</td>
+          <td class="num">$63-66k</td>
+          <td class="num">38-44</td>
+        </tr>
+        <tr>
+          <td><strong>E</strong> Implementation drag</td>
+          <td class="num">50-150k</td>
+          <td class="num">10.3-10.6m</td>
+          <td class="num">$2,300-$2,500</td>
+          <td class="num">$60-63k</td>
+          <td class="num">65-78</td>
+        </tr>
+        <tr>
+          <td><strong>F</strong> Legal collision</td>
+          <td class="num">500-800k</td>
+          <td class="num">11.5-11.9m</td>
+          <td class="num">$2,180-$2,310</td>
+          <td class="num">$62-64k</td>
+          <td class="num">47-54</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--gray-m); font-style:italic; margin-top:8px;">Ranges incorporate 30 red-team adjustments and one-at-a-time sensitivity analysis on 18 parameters. 2040+ figures carry ~±50% uncertainty bands.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">08</span>What must be true for the high-build case</h2>
+    <p class="section-deck">Scenario D is plausible, not inevitable. Ten conditions must hold simultaneously over twenty years.</p>
+    <ul class="findings">
+      <li><strong>Twelve-track legislative package passes substantially intact</strong> — not just zoning but ministerial review, CEQA carve-outs, fee caps, parking, state backstop, commercial preemption, building code, labor and fiscal plumbing.</li>
+      <li><strong>California Supreme Court upholds the housing core</strong> against charter-city challenges; tolerable narrowing on commercial and fiscal pieces.</li>
+      <li><strong>HCD or successor agency staffs to 1,000-2,000</strong> — five-fold expansion from current capacity — to enforce against 88 LA County jurisdictions.</li>
+      <li><strong>LADWP / SCE deliver shot-clock interconnection</strong> — 60-day plan review, 120-day energization, transformer lead times halved via state procurement pool.</li>
+      <li><strong>Federal IRA / CHIPS / grid funding stays open</strong> — finances state transformer pool and grid modernization through the buildout.</li>
+      <li><strong>Construction trades expand 30-40%/yr</strong> — apprenticeship pipelines scale; modular and pattern-book productivity gains realize.</li>
+      <li><strong>Capital markets workable</strong> — 30-yr mortgages stay below ~7.5%; multifamily cap rates accessible; condo construction-defect liability reform restores insurability.</li>
+      <li><strong>Fiscal capture mechanisms wired</strong> — EIFDs / IFDs / CRIAs expanded; state matching grants funded; value capture calibrated.</li>
+      <li><strong>Political coalition holds 20 years</strong> — five election cycles without a triggering NIMBY ballot reversal.</li>
+      <li><strong>No major exogenous shock</strong> — no Northridge-magnitude earthquake; no catastrophic wildfire; no 2008-style financial crisis; no federal funding withdrawal.</li>
+    </ul>
+    <p style="font-size:13.5px; color:var(--gray-d); margin-top:14px;">The conjunction of all ten is unlikely. Seven or eight is plausible. Two or three failures push the trajectory toward C or B. The point of the exercise is to be explicit about what success requires — not to promise that reform automatically delivers it.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">09</span>The bottom line</h2>
+    <ul class="findings">
+      <li><strong>How much can LA realistically grow?</strong> +1.5-2.5 million people by 2045 in the realistic abundance trajectory. Roughly flat in the drag trajectory.</li>
+      <li><strong>How much could housing costs realistically fall vs baseline?</strong> Real rent ~10pp lower than the no-reform path by 2045. Will not fall in absolute terms.</li>
+      <li><strong>Would median income rise or fall?</strong> Approximately flat. Composition effects offset agglomeration effects at the population growth rates the model produces.</li>
+      <li><strong>Would real residual income improve?</strong> Yes — by roughly $1,500-$2,500/HH/year under abundance. This is the core welfare gain.</li>
+      <li><strong>Would homelessness pressure decline materially?</strong> Yes during 2030-2040 — about 8-10k fewer unsheltered persons at peak — with partial rebound by 2045. Sustained reduction requires complementary investment.</li>
+      <li><strong>Can growth fund a meaningful share of infrastructure?</strong> Yes — 50-80% in central scenarios, 100% only with high fiscal capture. Realistic central case has a $1-3b/yr funding gap requiring bonds.</li>
+      <li><strong>What is the binding constraint?</strong> Physical delivery > institutional execution > fiscal plumbing > legal authority. The discourse focuses on the least binding one.</li>
+    </ul>
+  </section>
+
+  <div class="footer">
+    <p><strong>Method.</strong> Annual time-step deterministic model in Python, 2026-2045. 11 modules: legal capacity, entitlements, permits, completions, energization, occupation, housing cost, population, income, homelessness, business formation, fiscal feedback, risk scoring. Six scenarios × three utility variants × three fiscal-capture variants = 54 runs. One-year-lagged cross-module feedbacks. No within-year fixed-point iteration. Full source: <code>src/model.py</code>.</p>
+    <p><strong>Sources.</strong> US Census QuickFacts (LA County); ACS 5-year 2020-2024; Census County Business Patterns 2023; LA County FY24 budget; Hsieh & Moretti 2019 (rent-supply elasticity); Anenberg & Kung 2014; Baum-Snow & Han 2024; Combes & Gobillon 2015 (agglomeration); Glaeser & Gyourko 2018 (lag distribution); Colburn & Aldern 2022 (homelessness pressure weights); ULI 2023 LA infill cost study; Flaming/Toros LA Economic Roundtable (homelessness costs).</p>
+    <p><strong>Confidence.</strong> Model is most reliable at showing relative differences between scenarios. Least reliable at committing to specific 2045 levels. 2040+ figures carry ~±50% uncertainty. See <code>memo.md</code> §23 for honest forecast ranges and <code>outputs/red_team_memo.md</code> for the 30-point critique of the central case.</p>
+    <p style="margin-top:10px; color: var(--gray-m);">LA Abundance Model · forecasts to 2045 · author judgments on scoring weights documented in <code>data/baseline_assumptions.json</code></p>
+  </div>
+
+</div>
+</body>
+</html>
