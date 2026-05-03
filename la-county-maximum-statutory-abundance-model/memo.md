@@ -325,4 +325,148 @@ The model predicts about 2.4 percentage points of rent-burden reduction under ab
 
 ---
 
-*[End of chunk 2 of 5. Sections 11-15 follow.]*
+## 11. Population forecast
+
+Population in millions across the headline pairings:
+
+| Scenario | 2030 | 2035 | 2040 | 2045 |
+|---|---|---|---|---|
+| A — Baseline | 10.14 | 10.27 | 10.49 | 11.11 |
+| B — Moderate | 10.16 | 10.53 | 11.05 | 11.71 |
+| C — Max central | 10.31 | 11.08 | 11.35 | 11.64 |
+| D — High build | 10.44 | 11.35 | 11.65 | 11.96 |
+| E — Drag | 10.15 | 10.24 | 10.33 | 10.41 |
+| F — Legal collision | 10.20 | 10.66 | 11.23 | 11.81 |
+
+Persons-per-household responds to crowding and supply. In Scenario E, where housing is severely constrained, PPH stays elevated above the 2.81 baseline as households absorb some of the latent demand through doubling-up. In Scenarios C and D, PPH drifts modestly down toward 2.6-2.7 as supply enables household formation and reduced crowding.
+
+The most important pattern is that **abundance produces meaningful but not enormous population growth**. Scenario C delivers about +1.8 million people over 2024 by 2045 — substantial, but not the 14-15 million that some maximalist YIMBY scenarios imply. The model's latent-demand parameter μ = 0.20 is what limits population growth: people respond to lower LA rent versus peer metros, but the response is not unlimited. Move μ to 0.35 (the "high latent demand" sensitivity) and population in C reaches roughly 12.5 million.
+
+The user's project specification anticipated 11-13 million in C central and 13-15 million in D high build. The model lands at the *low end* of both ranges. The reason is the utility-capacity ceiling: even with full legal authority and strong demand, you can only physically connect ~110-115k units per year given infrastructure constraints, and population follows occupied units. To get to 13M+ in D, the utility variant would have to be even more aggressive than `util_improved` — probably requiring a state utility receivership and a federal IRA-scale capital infusion.
+
+**Net migration patterns.** In abundance scenarios, net migration into LA County turns positive after 2030 — reversing the 2020-2024 outflow. This depends on relative-rent improvements actually materializing; if peer metros (Phoenix, Las Vegas, Dallas, Houston, Salt Lake) keep building, LA's relative attractiveness recovers more slowly. The model treats peer rent as static; in reality, peer-metro convergence is a real risk to LA's growth dividend.
+
+**Crowding proxy.** The model tracks an "actual / baseline-PPH-occupied" ratio that proxies crowding. In Scenario E by 2045, this ratio sits about 8% above 1.0, indicating noticeable household-doubling pressure. In Scenario C it sits roughly at 1.0; in Scenario D slightly below 1.0 (mild un-crowding). This is not the kind of indicator that survives political contestation — opposition will frame any crowding deviation as evidence of "overdevelopment" — but it is internally meaningful.
+
+---
+
+## 12. Median income and real welfare forecast
+
+Median household income (real 2024 dollars), residual income after rent, and per capita income real:
+
+| Scenario | Median HH 2045 | Residual after rent 2045 | Per capita 2045 |
+|---|---|---|---|
+| A — Baseline | $89,900 | $62,200 | $46,200 |
+| B — Moderate | $89,800 | $62,500 | $46,200 |
+| C — Max central | $89,800 | $64,300 | $46,400 |
+| D — High build | $89,700 | $64,300 | $46,500 |
+| E — Drag | $90,000 | $61,700 | $46,000 |
+| F — Legal collision | $89,700 | $62,700 | $46,200 |
+
+The dispersion in median household income is small. The composition effect — moderate-income households moving in and pulling median down — is real in the model but quantitatively modest at the population growth levels we observe. At larger inflows (10%+ population growth in five years), the composition effect would be more visible; at the 18-22% growth over twenty years that the model produces, it averages out to less than $500/year of compositional shift in median.
+
+The welfare metric to focus on is **residual income after rent**. Under abundance, this rises by approximately $2,100/year over the no-reform baseline. Per household, that is real money. Across 4 million households (baseline + new), it represents roughly $8 billion per year of household-level real welfare gain by 2045. This is what abundance actually delivers in dollars-and-cents terms: not collapsing rent, but freeing up about $170/month per household to spend on something other than housing.
+
+**Per capita income** rises modestly across all scenarios, including abundance, because agglomeration effects (higher density → higher productivity, per Combes-Gobillon) outweigh the composition pull-down. The agglomeration elasticity used here (0.03 per density doubling) is at the conservative end of the literature; if the true value is closer to 0.05, the agglomeration uplift in C and D would be roughly 60% larger.
+
+**Poverty rate.** The model produces poverty rates that are essentially flat across scenarios (13.0-13.4%), because countervailing forces nearly cancel: agglomeration uplift reduces poverty modestly, while the composition effect and rising-rent pressure on the bottom decile push back. The model does *not* claim that abundance lowers poverty meaningfully countywide. What it claims is that *welfare* — measured as residual income after rent — improves about 3% under abundance versus baseline.
+
+**Distributional caveats.** The model is a countywide aggregate. It does not track distributional outcomes: the median improvements above could mask concentrated welfare losses for renters in redevelopment zones, particularly in lower-income neighborhoods where displacement pressure is highest. Aggregate welfare gain is consistent with concentrated harm. A serious follow-on analysis would need parcel-level or census-tract-level outcomes; this model cannot provide them.
+
+---
+
+## 13. Homelessness pressure and social-cost forecast
+
+Homelessness pressure index (0-100, baseline = 50, lower is better) and homelessness-cost avoidance per year:
+
+| Scenario | HPI 2030 | HPI 2035 | HPI 2040 | HPI 2045 | Cost avoidance 2045 |
+|---|---|---|---|---|---|
+| A — Baseline | 56 | 46 | 51 | 55 | $0.0B |
+| B — Moderate | 57 | 44 | 48 | 51 | $0.0B |
+| C — Max central | 39 | 36 | 38 | 41 | $0.35B |
+| D — High build | 36 | 35 | 38 | 41 | $0.35B |
+| E — Drag | 58 | 62 | 67 | 71 | $0.0B |
+| F — Legal collision | 45 | 43 | 47 | 51 | $0.0B |
+
+Three patterns:
+
+**HPI improves materially under abundance during the 2030-2040 window.** Scenarios C and D drop the index from 50 (baseline anchor) to ~35-36 in the mid-period, when supply expansion is meaningfully outpacing demand growth. This roughly corresponds to lower rent burdens, higher residual incomes, and more new ELI-eligible units coming online.
+
+**HPI rebounds toward 41 by 2045 in C and D.** This is because real rent continues to rise (just more slowly than baseline), and after the construction plateau is reached, the supply effect on rent diminishes. The takeaway: abundance buys you a 5-15 year window of meaningful homelessness pressure relief, not permanent abolition.
+
+**Cost avoidance is modest in dollar terms.** $0.35-0.55B per year of avoidable homelessness response cost is real money but small relative to LA County's $40B+ general fund. Translated to person counts, the model suggests roughly 7,000-9,000 fewer unsheltered individuals at peak versus the baseline — a meaningful 10-12% reduction in unsheltered population, but far from the elimination of homelessness.
+
+**The model deliberately does not assume rent reduction alone solves homelessness.** Even in Scenario D high-build, HPI never falls below 35. Substantial residual unsheltered population is implicitly assumed to require permanent supportive housing, mental health treatment, addiction services, eviction prevention, and shelter capacity that are not in this model. The dollarized cost avoidance reflects only the marginal flow effect (people not entering homelessness because rents stabilized) and not the stock effect (people exiting homelessness due to non-housing services).
+
+**Honest framing.** The right message is: housing supply is a *necessary* lever for homelessness reduction. Abundance reduces inflow into homelessness, which over time reduces unsheltered population, which reduces public emergency response costs. But abundance is not by itself sufficient. The HPI rebound by 2045 illustrates the limit. To sustainably keep homelessness pressure low requires either continued abundance (so rent keeps moderating) or complementary investments in the non-housing pieces of the homelessness system — and probably both.
+
+---
+
+## 14. Business formation and commercial vitality forecast
+
+Employer establishments, employment, and accommodation/food sales:
+
+| Scenario | Establishments 2045 | Employment 2045 | Food sales 2045 ($B) | Vitality index 2045 |
+|---|---|---|---|---|
+| A — Baseline | 343,866 | 4,496,076 | $84 | ~107 |
+| B — Moderate | 374,930 | 4,806,513 | $96 | ~119 |
+| C — Max central | 394,234 | 4,897,654 | $106 | ~131 |
+| D — High build | 417,208 | 5,101,240 | $117 | ~140 |
+| E — Drag | 333,393 | 4,274,018 | $83 | ~104 |
+| F — Legal collision | 374,685 | 4,828,832 | $95 | ~117 |
+
+**The good news.** Establishments grow 29% in C and 37% in D versus the 2023 baseline of 304,988. Employment expands by roughly 1.0-1.1 million jobs in C/D over baseline. Annual payroll grows from $300B to $620-645B nominal (with inflation). Food and accommodation sales grow from $44B (2022) to $106-117B nominal in C/D. These are large numbers.
+
+**The empirical caveats are substantial.** As noted in the model architecture, the commercial elasticities (0.25 to density, −0.30 to friction) are *speculative*. There is no clean natural experiment for "what happens when a major US metro deregulates commercial permitting on a multi-year horizon." The closest comparators — Houston's no-zoning regime, Tokyo's permissive land use, Auckland post-2016 reform — are weak analogs because of structural differences. The numbers above should be read as *directional* (commercial reform produces meaningful business formation lift) but not as precise quantitative forecasts.
+
+**Sales-tax revenue implications.** Local sales tax (1% Bradley-Burns plus ~0.5% district averages) on incremental sales contributes to the fiscal feedback. With $50-70B of incremental food-and-accommodation sales by 2045 in C and D, this is a real revenue stream — perhaps $0.7-1.0B/year of incremental sales-tax revenue accruing to LA County jurisdictions. Modest at the county level, but meaningful for individual cities.
+
+**Restaurant/cafe/bar establishment count.** The model does not separately disaggregate restaurants from total establishments, but the food-sales figure roughly implies a lift of 2-4% per year in restaurant-type business growth versus 1% baseline. This is consistent with anecdotal observations from places that have eased restaurant permitting (e.g., the post-COVID outdoor dining expansion).
+
+**Why the commercial vitality story is plausible despite weak evidence.** Most of the LA County commercial-permitting reform proposals in the menu are not radical economic interventions; they are removals of well-documented friction. Permanent outdoor dining, by-right restaurants in commercial zones, fast-track tenant improvements, and standardized health/fire/building signoffs collectively reduce time-to-open from 6-18 months to 2-4 months in many cases. This kind of friction reduction reliably increases business formation. The question is the *magnitude*, not the *direction*.
+
+**Why the magnitude estimates are worth distrusting.** A 30-35% lift in establishments over 20 years implies LA County recovering its pre-1990 share of California business formation while also adding new categories. This requires more than friction reduction — it requires sustained demand, capital availability, and labor supply. The model does not endogenize any of those. If the commercial-vitality elasticities are half the central values, we still see meaningful gains (~15% in establishments), which is a more defensible claim.
+
+---
+
+## 15. LADWP, utilities, and infrastructure execution
+
+The infrastructure module is the single most consequential piece of the model. Three utility variants generate the largest spread in headline outcomes:
+
+| Variant | Capacity (units/yr) | Lag (months) | Transformer factor | LADWP modernization |
+|---|---|---|---|---|
+| util_improved | 75,000 | 5 | 0.6 | 1.5 |
+| util_current_drag | 38,000 | 12 | 1.0 | 1.0 |
+| util_severe_bottleneck | 18,000 | 22 | 1.5 | 0.7 |
+
+Cumulative net new units in 2045 across utility variants for Scenario C:
+
+- C + util_improved + fcap_partial: 1,630,561 units
+- C + util_current_drag + fcap_partial: 693,259 units
+- C + util_severe_bottleneck + fcap_partial: 47,942 units
+
+The variance across utility variants is *34× larger* than the variance across scenarios A→D for any fixed utility variant. This is a fundamental finding of the model: **whether LADWP and SCE can absorb new construction is more important to LA's housing future than whether the legislature passes a maximum reform package.**
+
+**What "improved" requires.** The util_improved variant assumes:
+
+- LADWP/SCE plan-review and energization shot clocks are real and enforced.
+- Transformer lead times drop from current 18-24 months to 8-10 months via a state procurement pool.
+- Distribution-capacity maps are public and continuously updated.
+- A dedicated housing-growth interconnection team exists at each utility.
+- Pre-approved electrification packages eliminate per-project plan-review for common multifamily building types.
+- Coordinated trenching ("dig-once") is mandated and enforced.
+- State-backed financing is available for major capacity upgrades, with utility cost recovery rationalized.
+
+This is a long list. None of these elements exists today at scale in LA County. The improved variant is achievable but requires a parallel reform track on utility regulation that is at least as politically heavy as the housing core.
+
+**What "severe bottleneck" looks like.** Severe is what happens if 2022-2023 transformer shortages persist or worsen, IRA-driven competing demand from data centers and EV chargers eats utility capacity, LADWP modernization stalls due to budget or governance issues, and CPUC enforcement on SCE remains weak. Severe bottleneck plausibly is the *current* trajectory — not a worst case. Reforms that pass on paper but are not paired with utility execution converge on this outcome.
+
+**The "delayed completed units" backlog.** The model tracks a critical headline metric: completed buildings that cannot be occupied because they have no electrical service. In Scenario E + util_severe by 2045, this backlog reaches roughly 800,000 units — finished buildings sitting empty waiting for connection. This is the most vivid possible illustration of legal-capacity-vs-delivered-housing divergence. Even in Scenario C + util_current_drag, the backlog at 2045 is around 100,000-200,000 units. In Scenario C + util_improved it is small (~5-10k).
+
+**Practical implication for the policy package.** Tracks 8 (infrastructure acceleration) and 9 (utility interconnection reform) of the Maximum Statutory Abundance package are not optional. Without them, the rest of the package mostly produces paper approvals. The political coalition for housing reform must include CPUC reform, LADWP governance reform, transformer-procurement legislation, and dig-once mandates — or the housing reforms will fail in the field.
+
+**The federal piece.** The IRA, the CHIPS Act, and various federal grid-modernization grants create a financing window that LA could exploit for transformer procurement and grid upgrades. This is not in the model directly, but is the realistic financing path. If federal support contracts (e.g., under a future administration's funding cuts), the achievability of util_improved variant declines materially.
+
+---
+
+*[End of chunk 3 of 5. Sections 16-20 follow.]*
