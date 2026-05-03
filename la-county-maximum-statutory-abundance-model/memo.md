@@ -156,4 +156,173 @@ The reform menu is not a wish list. It is a research artifact: an attempt to lay
 
 ---
 
-*[End of chunk 1 of 5. Sections 6-10 follow.]*
+## 6. Modeling architecture
+
+The model is a deterministic, annual time-step simulation written in Python (`src/model.py`). It runs from 2026 through 2045 and produces a `YearState` record for each year of each scenario. Output is a CSV with one row per scenario × utility variant × fiscal-capture variant × year — 1,080 rows for the full grid, 216 rows for the milestone-year headline view.
+
+**Funnel logic.** The single most important architectural decision is to route housing production through five gates:
+
+1. **Legal capacity** — units that *could* be built under the scenario's zoning regime, after coastal/fire haircuts.
+2. **Entitlements** — applications that clear ministerial review, after shot-clock multipliers, local-resistance haircuts, state-backstop relief, and litigation drag.
+3. **Permits** — entitlements that obtain building permits, capped by ministerial-share and building-department staffing.
+4. **Completions** — permits that finish construction, drawn from a five-year permit-to-completion lag distribution and capped by the construction-labor pool.
+5. **Energization** — completions that obtain utility connections, drawn from a utility-lag distribution and capped by LADWP/SCE distribution capacity.
+6. **Occupied** — energized units multiplied by occupancy rate (~0.97).
+
+A unit only enters the housing stock when it is energized. Units that are completed but not energized accumulate as a "delayed completed units due to utilities" backlog. This backlog is a key headline output because it makes visible the gap between what the policy package allows and what physical infrastructure can absorb.
+
+**Module sequence per year.** Each year, modules execute in a fixed order:
+
+1. Legal capacity → 2. Entitlements → 3. Permits → 4. Completions → 5. Energization → 6. Occupation → 7. Housing cost (rents and values respond to stock vs. demand) → 8. Population (occupied stock × persons-per-household, with crowding feedback) → 9. Income (agglomeration × composition effects) → 10. Homelessness pressure → 11. Business formation → 12. Fiscal feedback (gross revenue, net of service costs, reinvestment pool) → 13. Risk scoring.
+
+There is no within-year fixed-point iteration. All cross-module feedbacks lag one year:
+
+- Fiscal capture in year *t* funds utility capacity in year *t+1*.
+- Completions in year *t* expand the construction labor pool for year *t+1* (capped at 1.4× rolling capacity).
+- Rent levels in year *t* feed into latent migration demand in year *t+1*.
+
+**Housing cost equation.** Real rent change is a reduced-form log-linear:
+
+`Δlog(rent_real) = α · Δlog(occupied_stock − latent_demand) + β · Δlog(real_income) + γ · drift`
+
+with α = −0.30 central (range −0.20 to −0.45), β = 0.70, γ = 0.005. The α range brackets Hsieh-Moretti 2019's implied −0.25, Anenberg-Kung 2014's −0.40 to −0.50 in submarket data, and Baum-Snow & Han 2024's roughly −0.20 metro-level estimate. The literature is *not* unanimous; we treat the central value as medium-evidence.
+
+Latent demand is the model's most important behavioral lever. Population *desired* in LA grows with reduced rent versus peer metros: `desired_pop = baseline_pop × (1 + μ · max(0, rent_LA / rent_peer − 1))` with μ = 0.20 central, 0.28 in the high-build scenario. This is what generates the model's most important counterintuitive prediction: when supply expands, population catches up so that rents do not fall as much as a partial-equilibrium intuition suggests.
+
+**Population endogeneity.** Actual population is `min(desired_pop, occupied_units × persons_per_household)`. PPH responds to crowding: when desired exceeds available housing, crowding rises; when supply exceeds desire, household formation increases (PPH falls). PPH is bounded between 2.50 and 3.21 (2.81 baseline ± 0.40).
+
+**Income decomposition.** Median household income is decomposed into agglomeration uplift (0.03 per density doubling, Combes-Gobillon 2015) and a composition factor that pulls median *down* as moderate-income households are able to afford to live in LA. The welfare metric the model emphasizes is `real_residual_income_after_housing` — the median minus annualized rent — which rises in abundance scenarios even when nominal median falls.
+
+**Homelessness pressure index.** A bounded 0-100 composite anchored at 50, computed as 50 + 30·tanh(rent-to-income deviation × 4) + 15·tanh(rent-growth deviation × 50) − 10·tanh(ELI-supply deviation) − 10·tanh(employment-growth × 25) − 12·tanh(residual-income deviation × 4). Weights are derived from Colburn & Aldern 2022 (*Homelessness is a Housing Problem*); the tanh smoothers prevent saturation.
+
+**Fiscal module.** Per new unit and per new household, the model computes property tax (1.0% × home value × 0.55 LA share post-ERAF), one-time construction sales tax, recurring local sales tax, business tax lift, utility revenue, and state income-tax pass-through (5% return assumption). Service cost is $1,500/capita/year marginal (lower than full general-fund average because schools are state-funded under LCFF, and police/fire/parks have substantial fixed components). Net revenue × fiscal-capture rate × value-capture-feasibility-factor flows into next year's utility capacity, with a hard cap at 1.5× baseline to prevent runaway feedback.
+
+**Risk scoring.** Three composite scores in 0-100: legal/implementation risk (preemption intensity, CEQA exposure, HCD enforcement gap, local resistance, litigation, political reversal), delivery risk (utility lag, labor shortage, capital cost, infrastructure funding inadequacy, litigation, local resistance), and infrastructure stress (population pressure, fiscal alignment relief, utility execution lift, delayed-units share). Each component contributes additively; weights documented in `src/model.py`.
+
+**What the model does not do.** It is not stochastic. It does not run Monte Carlo over interest rates, immigration, climate shocks, or recession risk. It does not model city-by-city heterogeneity (everything is countywide). It does not solve a general equilibrium for capital, labor, or land prices. It does not endogenize peer-metro rent. These limitations are documented in the red-team memo.
+
+---
+
+## 7. Core assumptions
+
+The most consequential assumptions are listed here in order of how much each one drives 2045 outcomes. Sensitivity analysis (Section 24) shows the magnitude of each.
+
+**Latent migration elasticity μ (central 0.20, range 0.10-0.30).** This determines how much of new supply is absorbed by population growth versus rent reduction. At μ = 0.30 most of the supply effect is absorbed by population; rent moderation is small. At μ = 0.10 supply meaningfully reduces rents but population growth is more limited.
+
+**Rent-to-supply elasticity α (central −0.30, range −0.20 to −0.45).** The instantaneous rent response to net supply growth. Combined with μ above, these two parameters together determine whether the model produces the "more people, similar rents" pattern (Hsieh-Moretti) or the "rent moderation, modest population growth" pattern (Anenberg-Kung partial equilibrium).
+
+**Utility capacity (variant-dependent).** Improved: 75,000 units/year baseline absorptive capacity, 5-month interconnection lag. Current drag: 38,000 units/year, 12-month lag. Severe bottleneck: 18,000 units/year, 22-month lag. Each variant also adjusts transformer constraint factor and a LADWP modernization index. The differences between variants drive the largest spread in final outcomes.
+
+**Construction labor capacity (scenario-dependent).** Baseline 28,000 units/year of effective trades capacity, scaling up to 80,000 in high-build via apprenticeship expansion and modular productivity. Capped at 1.4× rolling 3-year average growth, modulated by productivity, financing cost, construction cost inflation, and developer confidence.
+
+**State backstop effectiveness (0.10 baseline → 0.85 high-build).** What fraction of local-resistance friction the state actually neutralizes. This depends on HCD/Office-of-Housing-Approval staffing and political will.
+
+**Fiscal capture rate (0.0 / 0.30 / 0.60 across variants).** Share of net new public revenue actually channeled into infrastructure reinvestment. The remainder leaks to schools, the state, and other entities.
+
+**Service cost per capita marginal ($1,500/yr).** Lower than LA County's average general-fund per-capita because schools are largely state-funded, police/fire/parks have fixed components, and many county services are budgeted at the system level rather than per-capita. This is on the optimistic side — a more pessimistic alternative (e.g., $2,500/capita) would push service costs above gross revenue in most scenarios.
+
+**Income composition λ (0.15).** How much each percentage point of moderate-income inflow pulls median household income down. Bounded; effects in the model are visible but small at the population growth levels we observe.
+
+**Permit-to-completion lag distribution.** {0.15, 0.45, 0.75, 0.90, 1.00} cumulative over 5 years (Glaeser-Gyourko 2018, NMHC pipeline data). Determines how quickly permits convert to occupied units.
+
+**Demolition rate (0.0012/year).** Modest; reflects HCD APR loss data for LA. Higher under aggressive redevelopment.
+
+**Construction cost inflation (3.0%/yr baseline, 5.5%/yr in drag scenarios).** Affects how quickly the labor pool can scale and project feasibility.
+
+Each of these assumptions is editable in `data/scenario_parameters.json`. The model is parameter-driven, not hard-coded; reviewers can substitute their own values.
+
+---
+
+## 8. Scenario results — overview
+
+The model runs six scenarios across three utility variants and three fiscal-capture variants (54 total combinations). The "headline pairings" represent the most internally consistent pairing per scenario.
+
+| Scenario | Pair (utility / fiscal) | Cum new units 2045 | Pop 2045 | Real rent 2045 | HPI 2045 | Net rev 2045 |
+|---|---|---|---|---|---|---|
+| A — Baseline | current_drag / partial | 332,000 | 11.1M | $2,310 | 55 | $0.9B |
+| B — Moderate | current_drag / partial | 582,000 | 11.7M | $2,268 | 51 | $2.0B |
+| **C — Max central** | **improved / partial** | **1,631,000** | **11.6M** | **$2,121** | **41** | **$11.7B** |
+| D — High build | improved / high | 1,699,000 | 12.0M | $2,116 | 41 | $11.6B |
+| E — Implementation drag | severe / none | 45,000 | 10.4M | $2,362 | 71 | −$0.6B |
+| F — Legal collision | current_drag / partial | 658,000 | 11.8M | $2,256 | 51 | $2.5B |
+
+(Real rent figures in 2024 dollars. HPI baseline = 50; lower is better. Net revenue is annual flow in 2045.)
+
+The most important observation is the **40× spread** between Scenario E (45k cumulative units) and Scenario D (1.7M cumulative units), under the same notional policy package. The Maximum Statutory Abundance package gets passed in both scenarios. The difference is whether the institutions execute. This is the central thesis of the model: legal authority is a necessary but very far from sufficient condition.
+
+The second important observation is that **Scenarios C and D produce nearly identical headline numbers**, despite C having a less aggressive zoning multiplier (2.20 vs 2.60) and lower developer confidence. The reason is that under the improved-utility variant, both scenarios are constrained by utility capacity (which sits at ~75-112k/year given the 1.5× cap on infrastructure-driven expansion). The legal capacity in D goes unused because the funnel chokes downstream. This is a *finding*, not a bug: it means that beyond a certain point, additional zoning capacity has zero marginal return until physical infrastructure expands.
+
+The third observation is that **Scenario F (legal collision) lands close to Scenario B (moderate reform)**, not close to Scenario C. If the courts narrow the housing core or the fiscal/commercial pieces, the package degrades to something only modestly better than tightened HCD enforcement. This is consistent with the legal-survival probabilities: most of the value is in the housing core.
+
+The fourth observation is that **Scenario A (baseline) shows real rent rising 18 percent over twenty years** — meaningful rent inflation under counterfactual, despite the baseline producing 332k cumulative units. This baseline trajectory is itself somewhat optimistic; without continued state-level pressure (SB 35/423 enforcement, HCD compliance, builder's remedy), the actual no-reform path could be worse.
+
+---
+
+## 9. Housing production forecast
+
+Cumulative net new housing units by 2045 across the headline pairings:
+
+| Scenario | 2030 | 2035 | 2040 | 2045 |
+|---|---|---|---|---|
+| A — Baseline | −10,600 | 92,700 | 212,700 | 331,900 |
+| B — Moderate | −11,800 | 126,900 | 325,100 | 582,500 |
+| C — Max central | 52,600 | 562,600 | 1,098,200 | 1,630,600 |
+| D — High build | 93,000 | 631,400 | 1,166,600 | 1,698,500 |
+| E — Implementation drag | −14,400 | 5,400 | 25,100 | 44,600 |
+| F — Legal collision | 5,100 | 179,000 | 398,300 | 658,100 |
+
+Several patterns:
+
+**The slow start.** All scenarios except the baseline are *negative* through about 2028-2029 because annual demolitions (~4,400/year at 0.0012 × 3.7M units) exceed slow ramp-up completions in the first phase-in years. This is realistic. Policy reform takes time to translate into permits, then permits take 2-5 years to finish, then completions wait for utility connection. Anyone who tells you a 2026 reform produces 2027 units is selling something.
+
+**The acceleration window.** Scenarios C and D reach their stride between 2030 and 2035, when the legal-capacity ramp is complete, the entitlement pipeline is full, and the construction labor pool has scaled. By 2035, C is producing roughly 80,000 cumulative-net-new-units per year and D is at roughly 100,000 — both well above LA County's recent best.
+
+**The plateau.** After 2035, growth in C and D slows because the utility capacity constraint is binding. The model shows annual new occupied units leveling off at approximately the utility cap × 1.5 (the maximum reinvestment-driven capacity expansion). Beyond this plateau, more legal capacity is wasted unless utilities also scale.
+
+**The drag scenario.** Scenario E never escapes the bottleneck. Cumulative units stay below 50,000 by 2045 — essentially no net production over twenty years. This is the scenario where everything fails: utility capacity stays at 18k/year-equivalent, transformer constraints worsen, construction cost inflation runs at 5.5%, financing is expensive, and local sabotage holds down approvals. It is a possible outcome, not a fantasy. The 2022-2023 transformer shortage is a small preview of what severe bottleneck looks like.
+
+**Comparison to user prior.** The project specification anticipated 900,000-1,400,000 cumulative units in C central and 1,500,000-2,200,000 in D high build by 2045. The model lands at 1.63M for C and 1.70M for D — at the upper end of the C range, the lower end of the D range, and approximately consistent with both. The C-D collapse (to nearly identical numbers) is a model finding tied to utility capacity; it would not replicate if utilities scaled more aggressively in D than they do in our parameterization.
+
+---
+
+## 10. Housing cost forecast
+
+Median gross rent in real 2024 dollars (baseline 2024 = $1,954):
+
+| Scenario | 2030 | 2035 | 2040 | 2045 | Change vs 2024 |
+|---|---|---|---|---|---|
+| A — Baseline | $2,053 | $2,148 | $2,241 | $2,310 | +18.2% |
+| B — Moderate | $2,052 | $2,130 | $2,201 | $2,268 | +16.1% |
+| C — Max central | $2,041 | $2,061 | $2,086 | $2,121 | +8.5% |
+| D — High build | $2,036 | $2,052 | $2,080 | $2,116 | +8.3% |
+| E — Drag | $2,052 | $2,150 | $2,253 | $2,362 | +20.9% |
+| F — Legal collision | $2,049 | $2,121 | $2,189 | $2,256 | +15.5% |
+
+Median home value in real 2024 dollars (baseline = $834,200):
+
+| Scenario | 2030 | 2035 | 2040 | 2045 | Change vs 2024 |
+|---|---|---|---|---|---|
+| A — Baseline | $909k | $977k | $1,049k | $1,127k | +35% |
+| B — Moderate | $909k | $973k | $1,036k | $1,096k | +31% |
+| C — Max central | $902k | $926k | $955k | $992k | +19% |
+| D — High build | $898k | $921k | $951k | $988k | +18% |
+| E — Drag | $909k | $987k | $1,073k | $1,165k | +40% |
+| F — Legal collision | $907k | $967k | $1,027k | $1,088k | +30% |
+
+Two patterns deserve emphasis.
+
+**Real rent does not fall in absolute terms in any scenario.** Even Maximum Statutory Abundance produces an 8.3-8.5% real rent *increase* over twenty years. What it does is reduce rent inflation by roughly *10 percentage points* versus the baseline counterfactual. That is real welfare improvement — it represents about $170/month per household by 2045 versus the no-reform path — but it is not "rents come down" in the way some advocates promise. Latent demand, peer-metro convergence, and ongoing real-income growth all push rent upward; abundance offsets but does not reverse this.
+
+**Rent-to-income ratio implications.** With median household income real essentially flat at ~$90,000 across scenarios (composition effect mostly washes out at the population growth levels we see), the rent-to-income ratio rises everywhere but rises *less* under abundance:
+
+- Baseline 2045: 12 × $2,310 / $89,900 = 30.8% rent-to-income
+- C central 2045: 12 × $2,121 / $89,800 = 28.4%
+- D high build 2045: 12 × $2,116 / $89,700 = 28.3%
+
+The model predicts about 2.4 percentage points of rent-burden reduction under abundance — meaningful but not transformative. This is the central honest message of the housing-cost forecast: **abundance materially eases pressure but does not abolish high housing cost in coastal California.** Anyone promising otherwise is overselling.
+
+**Home-value implications.** Real home values *rise* in every scenario, including abundance. This is partly because home-value growth in the model is partly driven by income growth, and partly because zoning-floor expansion creates short-term land-value uplift before supply materializes. Existing homeowners get a substantial windfall in C central (+19% real over 20 years) — a politically important fact. The "abundance kills home values" narrative that some opponents float is not what the model produces.
+
+---
+
+*[End of chunk 2 of 5. Sections 11-15 follow.]*
