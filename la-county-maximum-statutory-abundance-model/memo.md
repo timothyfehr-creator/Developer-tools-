@@ -469,4 +469,200 @@ This is a long list. None of these elements exists today at scale in LA County. 
 
 ---
 
-*[End of chunk 3 of 5. Sections 16-20 follow.]*
+## 16. Growth dividend and infrastructure reinvestment
+
+The fiscal module computes annual gross new public revenue, net new revenue after marginal service costs, and the share captured for infrastructure reinvestment. Headline 2045 numbers across scenarios:
+
+| Scenario | Gross new revenue | Net new revenue | Reinvestment | Funding gap | Self-funded share |
+|---|---|---|---|---|---|
+| A — Baseline | $5.0B | $0.9B | $0.3B | $1.0B | 20% |
+| B — Moderate | $13.7B | $2.0B | $0.6B | $1.9B | 23% |
+| C — Max central | $30.7B | $11.7B | $3.3B | $1.6B | 68% |
+| D — High build | $35.1B | $11.6B | $6.6B | $0.0B | 100% |
+| E — Drag | $1.7B | −$0.6B | $0.0B | $0.4B | 0% |
+| F — Legal collision | $14.8B | $2.5B | $0.7B | $1.8B | 27% |
+
+(Gross revenue is gross of service costs and homelessness savings. Net revenue is gross + social-cost avoidance − service costs − infrastructure operating costs. Reinvestment is net × fiscal-capture rate × value-capture-feasibility-factor.)
+
+Several patterns are worth highlighting.
+
+**The growth dividend turns positive within 2-4 years.** In abundance scenarios, net new public revenue exceeds the marginal service-cost burden of new residents by approximately 2030 — only 4-5 years after policy enactment. By 2035, C is generating $2.4B/year of net positive revenue; by 2045, $11.7B/year. The growth dividend is real and large.
+
+**But it is not large enough to fund infrastructure capex without leverage.** Annual infrastructure capex needs (at $45,000/unit × 80,000-110,000 new units/year) total roughly $3.6-5.0B/year in C and D. Reinvestment from net revenue at the partial-capture rate (0.30) covers $3.3B/year by 2045 — about 68% of the need in C, full 100% in D under high capture. The remainder requires bond financing, state grants, federal IRA support, or value capture from upzoned land.
+
+**Years until fiscal dividend turns positive.** The model tracks this milestone. In abundance scenarios with partial fiscal capture, it sits at ~3-5 years post-2026. In drag scenarios, it never turns positive within the horizon — service costs always exceed gross revenue because supply growth is too slow to generate the property-tax base.
+
+**Share of infrastructure self-funded by growth.** This metric is the core of the "growth pays for infrastructure" hypothesis. In Scenario D high build with high fiscal capture, the share reaches 100% by 2045 — the growth dividend fully funds marginal infrastructure capex. In Scenario C with partial capture, it tops out around 68%. In Scenarios A and F with low fiscal capture, it stays below 30% even by 2045 — meaning most infrastructure capex requires external financing or remains unfunded.
+
+**Practical implication.** A "growth pays for infrastructure" policy regime is achievable but requires *all four* of these to be true:
+
+1. Substantial supply expansion (Scenarios C/D, not A/B/F).
+2. Meaningful fiscal-capture rate (≥0.30, ideally 0.60).
+3. Fiscal-plumbing reforms that channel revenue to the right jurisdictions.
+4. A bridging mechanism (bonds, grants) for the years when capex precedes revenue.
+
+If any of these breaks, infrastructure underinvestment compounds: insufficient utility capacity caps energization, which slows occupied-unit growth, which slows revenue growth, which deepens the funding gap. This is the model's most important non-linear failure mode.
+
+---
+
+## 17. Fiscal alignment and misalignment
+
+Even when the growth dividend exists, *who* receives it matters as much as *how much* there is. The model tracks two scores in 0-100 ranges:
+
+- **Fiscal leakage score** (higher = more leakage). Captures the share of incremental revenue that flows to entities other than LA County local jurisdictions: state income tax, ERAF redirection to schools, special districts, etc.
+- **Fiscal alignment score** (higher = better alignment). Captures the share of revenue that ends up flowing back into LA County infrastructure, after capture-rate and feasibility drag.
+
+Headline 2045 scores:
+
+| Scenario | Leakage score | Alignment score |
+|---|---|---|
+| A — Baseline | 80 | 50 |
+| B — Moderate | 80 | 50 |
+| C — Max central | 80 | 50 |
+| D — High build | 80 | 70 |
+| E — Drag | 80 | 30 |
+| F — Legal collision | 80 | 49 |
+
+The leakage score is structurally high (around 80) across all scenarios because the underlying fiscal architecture — Prop 13 base, ERAF redirection, state income-tax appropriation — is not changed in any scenario short of property-tax-allocation reform (which is excluded from the central package as politically too hard). Property tax revenue is split: LA County and cities receive about 55% of the 1% general levy after ERAF, schools take a similar share, and special districts take the remainder. Sales tax similarly splits between state, county, and cities. State income tax accrues mostly to the state, with only ~5% returning to LA infrastructure via grants and transit funding (a generous assumption).
+
+**Why this matters for policy.** Even Scenario D high-build, with strong supply growth and high local fiscal capture, leaves ~30% of new public revenue accruing to entities that have no claim on LA infrastructure. In dollar terms by 2045, that is roughly $10B/year of revenue that exists because LA grew but does not flow back to LA. The state benefits from LA's growth more than LA does.
+
+**Implications for the political coalition.** This fiscal mismatch is the structural reason California has not built — every individual jurisdiction faces the marginal cost of new development (school capacity, fire response, water infrastructure) but only captures 20-25% of the marginal revenue (after ERAF). The local rational decision is to obstruct growth even when the regional decision would favor it. The Maximum Statutory Abundance package includes EIFD/IFD/CRIA expansion and state matching grants to partially address this, but the underlying allocation rules cannot be fixed without either a constitutional amendment or a separate ballot initiative on property-tax allocation.
+
+**The "high fiscal capture" assumption is fragile.** Scenario D's fcap_high parameter (0.60 capture rate) requires aggressive use of EIFDs, value-capture mechanisms, public-land lease revenue, and possibly novel fiscal-plumbing legislation. Each of these tools individually faces political and legal opposition. The model's projection of 100% infrastructure self-funding in D 2045 should be read with that caveat: it assumes a fiscal regime that does not yet exist and would itself require sustained political investment.
+
+**Why fiscal capture isn't fungible.** Even when reinvestment dollars exist, they are not freely deployable. EIFD revenue is restricted to capital infrastructure within the district. CRIA revenue is restricted by similar rules. Bond financing requires voter approval (Prop 218 limits) for many uses. Value capture must be calibrated to preserve project feasibility (the model's value_capture_feasibility_drag parameter). The result: infrastructure that gets funded tends to be the infrastructure that is easiest to pay for under restricted funds, not the infrastructure that is most urgently needed.
+
+---
+
+## 18. Legal and implementation risks
+
+The legal-implementation risk score (0-100, higher = more risk) by scenario at 2045:
+
+| Scenario | Legal risk | Delivery risk | Infra stress |
+|---|---|---|---|
+| A — Baseline | 21 | 39 | 42 |
+| B — Moderate | 22 | 39 | 53 |
+| C — Max central | 32 | 23 | 53 |
+| D — High build | 35 | 12 | 54 |
+| E — Drag | 37 | 59 | 74 |
+| F — Legal collision | 29 | 39 | 67 |
+
+Several patterns:
+
+**Legal/political risk rises with reform intensity.** The legal_implementation_risk_score is highest in Scenarios D and F. D's elevated score reflects the full scope of preemption being challenged in court; F's reflects the fact that some pieces have already been narrowed. The score components are: preemption intensity (how aggressive the package), CEQA exposure (how much CEQA carve-out exists), HCD enforcement gap (does the state actually have staff), local resistance, ongoing litigation duration, and political reversal risk.
+
+**Delivery risk falls with reform intensity (when paired with adequate utility/labor execution).** Scenario D shows delivery risk of just 12 — because labor capacity is large, utilities are improved, and infrastructure funding is adequate. Conversely, Scenario E shows delivery risk of 59 — utility lag is severe, labor is constrained, financing is expensive, and infrastructure funding is inadequate. The high-build outcome therefore depends on both legal aggression *and* execution capacity.
+
+**Infrastructure stress is high almost everywhere.** Even in Scenarios C and D, infrastructure stress sits at 53-54 — meaning population growth is putting genuine pressure on schools, transit, parks, water, fire response, and sanitation. The reason is that population growth (15-20%) outpaces infrastructure expansion in most realistic capture-rate scenarios, even when utilities specifically are improved. This is a real cost that the dollarized fiscal module under-counts.
+
+**The interaction between scenarios and utility variants matters more than the scenario alone.** The 6 scenarios × 3 utility variants × 3 fiscal-capture variants matrix is worth scanning. Within a given scenario, util_severe collapses outcomes; within a given utility variant, scenario differences are smaller. The model's most important risk insight is that utilities-and-fiscal-plumbing carry roughly the same weight as legal preemption in determining outcomes.
+
+**The 20-year political-reversal risk.** Our political_reversal_risk_annual parameter (0.02 baseline, scaled in scenarios) implies roughly a 33% cumulative probability of meaningful repeal over 20 years even in Scenario C. In reality, political reversal is path-dependent and lumpy: a single high-salience NIMBY backlash event, a recession-era ballot initiative, or a partisan flip in the Legislature could trigger repeal in a given year. The model treats this as a steady drag, not a stochastic event. A more honest interpretation is that the *first* 8-10 years of any reform package are the most vulnerable; if the regime survives that long, durable institutional change becomes more likely.
+
+**The HCD enforcement question.** State backstop effectiveness in our parameterization ranges from 0.10 (baseline) to 0.85 (high-build). In reality, HCD has roughly 250 staff statewide for housing-element review, builder's-remedy enforcement, and policy implementation. To exercise binding authority over 88 LA County jurisdictions plus the unincorporated balance plus 481 other California jurisdictions requires more like 1,000-2,000 staff. Without explicit staffing legislation, the high-build state-backstop assumption is aspirational. The reform menu's "State permitting surge teams and building-dept staffing grants" entry is a partial fix.
+
+---
+
+## 19. Red-team critique
+
+A separate red-team memo (`outputs/red_team_memo.md`) addresses 30 specific failure modes in detail. The condensed version, ordered by impact:
+
+**1. Legal capacity is not delivered housing.** The funnel from zoning floor to occupied unit has at least five gates and many ways to fail at each.
+
+**2. Local sabotage is lumpy, not smooth.** Coastal cities can lose 90% of legal cases and still effectively obstruct via serial revisions, study requirements, and administrative delay.
+
+**3. Utilities become the new CEQA.** The model already shows this; the central case's util_improved assumption is itself a substantial bet.
+
+**4. Construction labor and materials are binding.** Trades labor is multi-year apprenticeship-gated. Materials inflation is volatile and not fully modeled.
+
+**5. Capital markets and interest rates limit private development.** The model treats financing as a single index parameter. Real-world capital availability is more complex.
+
+**6. Insurance constraints kill condo construction and fire-overlay multifamily.** Not in the model.
+
+**7. Latent demand absorbs supply; LA gets bigger but stays expensive.** This is the model's central honest finding — abundance enables growth but only modestly reduces real rent.
+
+**8. Median income may fall as composition shifts.** The model handles this via residual income; political framing may not.
+
+**9. Infrastructure lags reduce quality of life.** Schools, transit, parks degrade faster than dollarized service costs imply.
+
+**10. Commercial reform evidence is weaker than housing reform evidence.** Treat commercial outputs as directional.
+
+**11. Coastal high-income cities will partially win in court.** Bimodal countywide outcome — Scenario C in much of the county, Scenario F in West LA / coastal.
+
+**12. State enforcement capacity is currently inadequate.** Without staffing legislation, the backstop is aspirational.
+
+**13. Political reversal is a real 5-10 year risk.** Single salient event could trigger repeal.
+
+**14. Land-value uplift precedes rent reduction.** Existing owners win first, before supply benefits accrue.
+
+**15. Displacement effects are concentrated in vulnerable neighborhoods.** Aggregate gains hide distributional harms.
+
+**16. The growth dividend is real but fiscally misaligned.** State and ERAF capture most of it.
+
+**17. New tax revenue arrives later than capex needs.** Bond financing required as a bridge.
+
+**18. Prop 13 weakens local fiscal incentives.** Allocation rules are not fixed in the central package.
+
+**19. Service costs may exceed revenues in growth corridors.** Marginal cost per capita varies by jurisdiction.
+
+**20. Homelessness savings are slow and require complementary investment.** Lower rent reduces inflow but does not exit existing unsheltered population.
+
+**21. State income-tax growth does not automatically help LA infrastructure.** The 5% return assumption is generous.
+
+**22. Utility capex needs exceed near-term utility revenue.** Bond financing required.
+
+**23. Value capture reduces feasibility if overused.** The model captures this directionally but probably understates it.
+
+**24. Infrastructure districts work better in high-value areas.** Lower-income corridors are at a structural disadvantage.
+
+**25. Fiscal benefits are regionwide; project costs are neighborhood-specific.** Mismatch is the structural cause of obstruction.
+
+**26. Model is deterministic.** No Monte Carlo over interest rates, immigration, climate, federal policy.
+
+**27. Latent demand and peer-metro rents are partially endogenous.** Static peer-rent assumption is a simplification.
+
+**28. 2040+ horizon is extrapolation, not forecast.** Confidence bands widen materially after 2035.
+
+**29. Reform-menu commercial scoring is author judgment.** Not literature-derived.
+
+**30. LA County is 88 cities, not a unit.** Countywide aggregation is an averaging fiction.
+
+The full memo expands each point with specific magnitudes and conditional analysis.
+
+---
+
+## 20. Response to the red-team critique
+
+The red-team list above is a comprehensive list of ways the model could be wrong. The honest response is that most of them are *correct*. The model is most reliable in showing relative differences between scenarios (C vs A, D vs C, E vs C) and least reliable in committing to specific 2045 levels. The 1.6 million central-case figure should be read with at least ±30% uncertainty; the 2040-2045 numbers with ±50%.
+
+That said, certain critiques are partial-equilibrium objections to a partial-equilibrium model — they are warranted as caveats but do not invalidate the model's directional conclusions. Specific responses:
+
+**On "legal capacity is not delivered housing" (#1).** This is the model's *core thesis*. The five-gate funnel and lag distributions are designed precisely to prevent the naive equation of legal authority with built units. The fact that the central case projects 1.6M cumulative units rather than 5M+ (which a pure legal-capacity reading would suggest) is the model already responding to this critique.
+
+**On "utilities become the new CEQA" (#3).** The model not only acknowledges this — it treats utility variants as the largest single source of variance. The 34× spread across utility variants for fixed scenario is the model *making* the critique, not failing to address it. The improved-utility variant is a genuine bet on a parallel reform track that does not yet exist.
+
+**On "latent demand absorbs supply" (#7).** This is the most important honest finding. The model deliberately uses a relatively conservative latent-demand parameter (μ = 0.20) versus what high-Hsieh-Moretti estimates would suggest. The result is meaningful population growth (+18-22%) but only modest rent improvement (10pp vs counterfactual). If μ is higher, population is larger and rent improvement smaller. The model presents the conservative version of an unavoidable tradeoff.
+
+**On "median income may fall as composition shifts" (#8).** The model handles this explicitly via the income decomposition. At the population growth rates the model produces, the composition effect is small (~0.5% reduction in median). At larger inflows, it would be more visible. The welfare metric the memo emphasizes is residual income after rent precisely because median income alone is misleading.
+
+**On "fiscal benefits are misaligned" (#16, 25).** Acknowledged and central to the model's own findings. The fiscal alignment score is structurally low because it is supposed to be — the underlying tax-allocation rules in California are misaligned with the geographic distribution of growth costs. The model is making the critique, not falling into the trap.
+
+**On "model is deterministic" (#26).** Correct. A Monte Carlo extension with stochastic interest rates, immigration shocks, climate disasters, and political-reversal events would produce wider confidence bands and probably shift the central case downward (since most shocks reduce production). The deterministic central case should therefore be read as somewhat optimistic. This is documented in `outputs/red_team_memo.md`.
+
+**On "2040+ is extrapolation" (#28).** Correct. The 2026-2035 numbers are most reliable. The 2040-2045 numbers should be read as scenario sketches, not forecasts. We include them because the scenario brief requests them, but they carry larger uncertainty bands than the early years.
+
+**Critiques that should change one's confidence in specific numbers but not the framework:**
+- Utility-improved being aspirational → the central case might be 700,000-800,000 cumulative units rather than 1.6M.
+- Insurance crisis killing condos → reduce delivered units by 15-20%.
+- Latent-demand μ at 0.30 → reduce real-rent improvement by half.
+- HCD enforcement at 0.40 instead of 0.70 → reduce delivered units by 10-15%.
+- Political reversal at year 8 → revert to baseline trajectory after the boom.
+
+These are real risks. They do not change the basic model architecture or the relative ordering of scenarios. They do change how to think about the central-case headline numbers.
+
+**What the red team does not invalidate.** The model's framework — funnel logic, separation of legal capacity from delivered units, explicit utility-and-fiscal-feedback constraints, and the residual-income welfare metric — survives all of the critiques. The model is a tool for thinking about *which* constraints bind and *under what conditions*. It is not a forecast.
+
+---
+
+*[End of chunk 4 of 5. Sections 21-24 follow.]*
