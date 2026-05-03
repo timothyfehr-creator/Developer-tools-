@@ -665,4 +665,212 @@ These are real risks. They do not change the basic model architecture or the rel
 
 ---
 
-*[End of chunk 4 of 5. Sections 21-24 follow.]*
+## 21. What must be true for the high-build scenario
+
+Scenario D — 1.7 million net new units by 2045, 12.0M population, 8.3% real rent rise vs 18% baseline, $11.6B/yr fiscal dividend, 100% infrastructure self-funding — is *possible* but conditional on a long list of things going right simultaneously. For D to actually materialize, the following must all hold:
+
+**1. The legislative package passes substantially intact.** Not just SB 79-style transit density, but the full twelve-track package: state zoning floor, ministerial shot clocks with deemed approval, CEQA carve-outs for infill and grid infrastructure, fee caps, parking elimination, state permitting backstop, commercial preemption, building-code reforms, labor and procurement reforms, and EIFD/IFD expansion. A diluted package degrades toward Scenario B or F.
+
+**2. Court survival of the housing core.** Charter cities (Beverly Hills, Manhattan Beach, La Cañada Flintridge, San Marino, others) sue, and the California Supreme Court ultimately upholds the state's authority on the core housing preemption. Some narrowing on commercial and fiscal pieces is expected and tolerable; substantial narrowing on housing core would push the trajectory toward F.
+
+**3. HCD enforcement actually has staff.** State backstop effectiveness at 0.85 (the high-build assumption) requires HCD or a successor Office of Housing Approval to have 1,000-2,000 staff actively monitoring 88 LA County jurisdictions plus the rest of California. This is a five-fold expansion from current capacity. It requires explicit appropriation legislation and several years to build organizational capability.
+
+**4. LADWP and SCE deliver shot-clock interconnection.** Plan review in 60 days, energization in 120 days, with deemed-energized backstops. Transformer lead times drop from current 18-24 months to 8-10 months via a state procurement pool. LADWP modernization index reaches 1.5 (50% improvement over current). LA City Council aligns with state utility regulation despite municipal home rule. CPUC enforcement of SCE strengthens.
+
+**5. Federal funding window stays open.** The IRA, CHIPS Act, and federal grid-modernization grants continue to flow. State transformer pool finances itself partly via federal match. Federal housing finance (FHA, GSE, LIHTC) remains accessible and competitive.
+
+**6. Construction trades expand at 30-40% per year.** Apprenticeship pipelines for electricians, plumbers, elevator technicians, inspectors, and utility crews scale meaningfully. Building-trades unions cooperate with the expansion (rather than seeing it as wage suppression). Pre-approved pattern-book and modular designs deliver real productivity gains (~12% labor savings).
+
+**7. Capital markets remain workable.** 30-year mortgage rates do not exceed roughly 7.5-8% sustained. Multifamily cap rates remain accessible. Construction financing is available at reasonable terms. Insurance markets remain functional for multifamily (the construction-defect liability reform passes, restoring condo insurability).
+
+**8. Fiscal capture mechanisms are wired.** EIFD/IFD/CRIA are expanded. State matching grants for infrastructure bonds are funded. Value capture is calibrated to preserve project feasibility. Local jurisdictions actively use these tools rather than refusing to participate.
+
+**9. Political coalition holds for 20 years.** No reversal-triggering ballot initiative succeeds. No partisan flip in the Legislature. No high-salience NIMBY backlash event causes legislative panic. Across roughly 5 statewide election cycles, the housing coalition is durable.
+
+**10. No major exogenous shocks.** No Northridge-magnitude earthquake. No catastrophic wildfire that resets coastal-zone politics. No 2008-style financial crisis. No federal policy regime change that withdraws IRA-scale infrastructure financing.
+
+The conjunction of all ten is unlikely. The conjunction of seven or eight is plausible. Any major break in 2-3 of them pushes the trajectory toward Scenario C or B.
+
+---
+
+## 22. What could go wrong
+
+The mirror image of the high-build conditions: ways the trajectory could collapse.
+
+**Utility execution stalls.** This is the single most likely failure mode. LADWP modernization runs into LA City Council resistance; SCE's CPUC oversight remains weak; transformer lead times stay at 18-24+ months; distribution capacity caps energization; infrastructure capex outruns financing. Outcome: trajectory reverts toward Scenario E (45k cumulative units by 2045) regardless of legal preemption.
+
+**Administrative sabotage.** Cities comply on paper and obstruct in practice via serial site-plan revisions, geotechnical re-review demands, fire-marshal interpretations, and discretionary studies. State backstop is too thinly staffed to intervene case by case. HCD audits exist but findings are not enforced. Outcome: legal authority delivers maybe 30-40% of its potential — trajectory between Scenarios B and C.
+
+**Construction-defect insurance crisis worsens.** Without construction-defect liability reform, multifamily insurance becomes prohibitive. Condo construction stays near zero. Cost of capital for ground-up multifamily rises 200-400 bps. Outcome: 15-20% reduction in delivered units.
+
+**Single political-reversal event in 2030-2032.** A high-salience displacement scandal, a coordinated NIMBY ballot initiative, or a partisan flip in the Legislature triggers partial repeal of the preemption package. The reform regime survives but is materially weakened. Outcome: trajectory reverts to Scenario A after a 4-year boom; cumulative net new units lock in at maybe 600-800k by 2045.
+
+**Latent-demand parameter is higher than 0.20.** If μ is closer to 0.35, all new supply is absorbed by migration. Real rent does not improve at all relative to baseline. Population reaches 13.5M+. The model's projected ~$2,100/HH/year residual income improvement disappears. Politically catastrophic — voters see growth without rent relief.
+
+**Macro shocks.** Persistent 7%+ mortgage rates suppress private development. A 2008-style financial crisis halts capital flows for 2-3 years and removes 200,000-400,000 units from the trajectory. A federal policy regime change cuts IRA infrastructure funding mid-stream. Outcome: trajectory reverts toward C-low or B by 2045.
+
+**Climate disasters.** A Northridge-magnitude earthquake or a Palisades-magnitude fire resets coastal-zone politics, triggers insurance withdrawal, and absorbs construction labor for rebuilding rather than new units. Reduces delivered units by 100,000-300,000 over the recovery period.
+
+**Coastal cities win on the edges.** Court narrowings of the housing preemption in coastal high-income jurisdictions (Beverly Hills, Pacific Palisades, Manhattan Beach areas, La Cañada Flintridge, San Marino) preserve effective obstruction in 5-10% of the county's parcels. The countywide trajectory is averaged across the rest, but neighborhood-level outcomes are bimodal.
+
+**Fiscal dividend leaks more than projected.** State income-tax growth does not return to LA. Property-tax allocation reform fails. EIFD adoption is patchy. Value capture overshoots and kills feasibility. Outcome: infrastructure self-funding share falls from 68% to 30-40% in C; the funding gap widens; utility expansion stalls; the funnel chokes.
+
+**Construction labor doesn't scale.** Apprenticeship pipelines fail to expand. Trade unions resist pattern-book and modular productivity gains. The labor cap binds at 35-45k completions/year regardless of permit volume. Outcome: cumulative units cap around 800k by 2045 in a "labor-bottleneck" version of the central case.
+
+The pattern across these failure modes: many of them are *path-dependent* and *mutually reinforcing*. A utility-execution stall increases fiscal-funding gaps which deepen the next utility-execution stall. An early political-reversal event reduces investor confidence which reduces capital availability which slows production which provides political ammunition for further reversal. The model's deterministic structure does not capture the cascading-failure dynamic; in reality, failure modes cluster.
+
+---
+
+## 23. Bottom-line forecast ranges
+
+Combining model output, sensitivity analysis, and red-team adjustment, the honest forecast ranges are:
+
+| Indicator | Baseline 2024 | Baseline 2045 | C central 2045 | D high build 2045 | E drag 2045 |
+|---|---|---|---|---|---|
+| **Cumulative net new units** | — | 200-450k | 800k-1.4M | 1.4-1.9M | 50-150k |
+| **Population (millions)** | 9.85 | 10.8-11.3 | 11.4-12.0 | 11.8-12.7 | 10.3-10.6 |
+| **Median real rent** | $1,954 | $2,250-$2,400 | $2,050-$2,180 | $2,030-$2,180 | $2,300-$2,500 |
+| **Real rent change vs 2024** | — | +15% to +23% | +5% to +12% | +4% to +12% | +18% to +28% |
+| **Median home value (real)** | $834k | $1.05M-$1.20M | $0.95M-$1.05M | $0.95M-$1.05M | $1.10M-$1.25M |
+| **Median HH income (real)** | $90,112 | $89-91k | $88-91k | $88-91k | $89-91k |
+| **Residual income after rent** | $66,664 | $61-64k | $63-66k | $63-66k | $60-63k |
+| **HPI (50 = baseline)** | 50 | 52-60 | 38-46 | 38-44 | 65-78 |
+| **Homelessness cost avoidance** | — | ~$0 | $0.3-0.6B/yr | $0.3-0.6B/yr | $0 |
+| **Employer establishments** | 305k | 330-360k | 370-420k | 390-450k | 320-345k |
+| **Net new public revenue** | — | $0-2B | $8-15B | $9-15B | <$0 |
+| **Infra self-funded share** | — | 15-30% | 50-80% | 80-100% | <10% |
+| **Legal/implementation risk** | — | 18-25 | 28-38 | 32-42 | 32-42 |
+| **Delivery risk** | — | 35-45 | 18-30 | 8-18 | 55-65 |
+
+These ranges are wider than the central-case point estimates because they incorporate red-team adjustments, sensitivity analysis findings, and the +50% confidence-band widening for years past 2035.
+
+**The most likely central case** is something between Scenarios C and F — probably 800,000 to 1.3 million cumulative net new units by 2045, population reaching 11.4-11.7 million, real rent rising ~10-14% (vs 18% baseline), residual income up ~$1,500-$2,500/HH/year, and homelessness pressure index moderating to 42-50 in the mid-period before partial rebound. This requires the housing core to pass and survive courts, utility execution to improve materially, and HCD enforcement to be staffed. It does not require everything in the high-build scenario to go right.
+
+**The high-build case** (1.5-1.9 million units, 11.8-12.7M population) requires near-perfect execution across all ten conditions in Section 21. It is plausible — the model produces it under self-consistent assumptions — but it is not the most likely outcome. Treat D as a ceiling, not a target.
+
+**The implementation-drag case** (50-150k units, 10.3-10.6M population) is what happens if the legal package passes but execution fails. This is depressingly plausible. The most likely failure point is utility execution; second most likely is administrative sabotage; third is construction-cost / capital-market shocks. The drag scenario is actually closer to the *current* trajectory than the abundance scenarios are; California has been writing housing-element laws for thirty years without commensurate built units.
+
+**The legal-collision case** (~600-800k units, 11.5-11.9M population, modest rent improvement) is what happens if courts narrow significant pieces of the package. This is likely for the commercial preemption and fiscal-allocation pieces; less likely but possible for parts of the housing core. F is the realistic outcome for coastal high-income jurisdictions, even if the rest of the county tracks closer to C.
+
+**Bottleneck ranking** (which constraint binds most in 2045 across realistic scenario distributions):
+
+1. **Utilities and physical infrastructure.** The single largest source of variance.
+2. **Institutional execution capacity** (HCD staffing, local building departments, permitting offices). Determines whether legal authority translates to approvals.
+3. **Construction trades labor and materials.** Multi-year apprenticeship lead times, materials inflation volatility, insurance costs.
+4. **Capital markets and financing conditions.** Path-dependent on macro environment.
+5. **Local government compliance and litigation.** Substantial but addressable via state backstop and HCD enforcement, *if* those are staffed.
+6. **Fiscal misalignment.** Real but partially solvable via EIFDs, value capture, and state matching grants.
+7. **Politics and durability.** A 20-year horizon assumes coalition survival; possible but historically rare.
+8. **Legal authority itself.** This is the one that California can solve fastest. It is also the one that gets the most attention in the discourse, and the least binding in practice.
+
+**Hard-nosed conclusions:**
+
+- *How much can LA realistically grow?* +1.5-2.5 million people by 2045 in the realistic abundance trajectory. +500k-1M in the moderate or legal-collision trajectory. Approximately flat in the drag trajectory.
+- *How much could housing costs realistically fall relative to baseline?* Real rent could be 8-12 percentage points lower than baseline counterfactual by 2045. It will not fall in absolute terms in any realistic scenario.
+- *Would median income rise or fall?* Approximately flat in real terms. Composition effects offset agglomeration effects at the population growth levels we observe.
+- *Would real residual income improve?* Yes, by approximately $1,500-$2,500/HH/year in abundance scenarios. This is the core welfare gain.
+- *Would homelessness pressure decline materially?* Yes, during the 2030-2040 window — by roughly 8,000-10,000 fewer unsheltered persons at peak. Partial rebound by 2045. Sustained reduction requires non-housing complementary investment.
+- *Can the growth dividend fund a meaningful share of infrastructure?* Yes, 50-80% in central scenarios, 100% only in the most aggressive case with high fiscal capture. A funding gap of $1-3B/year is the realistic central case.
+- *Is the binding constraint legal authority, institutional execution, fiscal plumbing, or physical delivery?* All four bind. Ranked: physical delivery > institutional execution > fiscal plumbing > legal authority. The discourse focuses on the least binding constraint.
+
+---
+
+## 24. Appendix: assumptions and sensitivity tests
+
+### A.1. Key parameter values
+
+All parameters are stored in `data/baseline_assumptions.json` and `data/scenario_parameters.json`. Critical values:
+
+- Rent-supply elasticity α = −0.30 central (range −0.20 to −0.45).
+- Income pass-through β = 0.70.
+- Real-wage drift = 0.005/yr.
+- Latent-demand μ = 0.20 central (0.28 in D high build).
+- Persons-per-household = 2.81 baseline (range 2.50-3.21).
+- Permit-to-completion lag CDF (5-yr): {0.15, 0.45, 0.75, 0.90, 1.00}.
+- Construction labor scaling cap = 1.40× rolling 3-yr average.
+- Modular productivity lift = 8-15%.
+- Service cost per capita marginal = $1,500/year.
+- Infrastructure capex per unit = $45,000.
+- Property tax effective rate = 1.0%, LA share post-ERAF = 0.55.
+- Sales tax local share = 1% of combined 9.75%.
+- Income tax share returned to LA infrastructure = 5% (generous).
+- HPI weights: rent-to-income 30, rent-growth 15, ELI supply 10, employment 10, residual income 12 (tanh-bounded).
+
+### A.2. Scenario × variant matrix
+
+Six scenarios (A baseline, B moderate, C max central, D high build, E implementation drag, F legal collision) × three utility variants (improved 75k/yr, current_drag 38k/yr, severe_bottleneck 18k/yr) × three fiscal-capture variants (none 0%, partial 30%, high 60%) = 54 runs. Each run produces 20 annual states (2026-2045). Total 1,080 row-output. Headline view: 6 scenarios × 4 milestone years (2030, 2035, 2040, 2045) × headline pairing per scenario = 24 rows in `outputs/scenario_summary.csv` (well, 216 rows when including all variant combos at milestone years).
+
+### A.3. Sensitivity test results
+
+Tornado analysis on Scenario C central, perturbing each parameter individually at low and high multipliers. Largest effects on cumulative net new units 2045:
+
+| Parameter | Low perturbation | High perturbation |
+|---|---|---|
+| fiscal_capture_rate | −25.3% (fcap=0) | +6.2% (capped by util) |
+| utility_lag_months | +4.5% | −4.9% |
+| latent_demand_mu | +2.9% | −3.0% |
+| litigation_delay_years | +0.9% | −1.9% |
+| rent_alpha | −0.8% | +1.2% |
+| value_capture_feasibility_drag | +0.3% | −0.9% |
+| income_composition_lambda | +0.7% | −0.7% |
+| commercial_friction_elasticity | −0.3% | +0.4% |
+
+Largest effects on real rent 2045:
+
+| Parameter | Low perturbation | High perturbation |
+|---|---|---|
+| rent_alpha | +1.0% (less elastic) | −1.5% (more elastic) |
+| fiscal_capture_rate | +1.2% (less reinvestment) | −0.3% |
+| latent_demand_mu | −0.4% | +0.4% |
+| utility_lag_months | −0.2% | +0.2% |
+
+Several findings emerge:
+
+**Fiscal capture rate is the single most consequential parameter.** Cutting it to zero reduces cumulative units by 25% — because reinvestment-driven utility expansion is what enables the model to escape the baseline utility cap. The central case's projected outcomes critically depend on fiscal-capture mechanisms working.
+
+**Utility lag matters a lot but not as much as fiscal-capture-driven utility expansion.** Direct utility-lag perturbation moves units by ~5%, but the indirect effect via fiscal capture is ~25%.
+
+**Latent-demand μ moves population but not cumulative units.** Higher μ pulls in more people who absorb supply; cumulative built units stays roughly the same; rent moderation is reduced.
+
+**Rent-supply elasticity is the largest driver of rent outcomes.** A more elastic α (closer to −0.45) produces 1.5% additional rent reduction by 2045; less elastic (closer to −0.20) reduces it by 1%. The literature range itself accounts for ~3% of rent outcome.
+
+**Several parameters have surprisingly small impact.** Income-composition λ, commercial-friction elasticity, value-capture-feasibility drag, and most macro parameters move headline outcomes by less than 1%. This is partly because the model's binding constraints (utility capacity, legal-capacity ramp) dominate; secondary parameters operate within the envelope these set.
+
+**Caveat: this is local OAT sensitivity, not global.** One-at-a-time sensitivity does not capture parameter interactions. A simultaneous low fiscal_capture × high utility_lag × low construction_labor × high political_reversal would compound effects far more than the OAT bands suggest.
+
+### A.4. Files in the project
+
+- `data/baseline_assumptions.json` — LA County 2024 anchors with source labels and evidence tags.
+- `data/scenario_parameters.json` — base parameters and scenario/variant overrides.
+- `src/model.py` — equation core (11 modules + YearState dataclass).
+- `src/scenarios.py` — scenario × variant composition logic.
+- `src/reforms.py` — 36-reform candidate menu.
+- `src/sensitivity.py` — OAT tornado runner.
+- `src/run_model.py` — CLI orchestrator + chart rendering.
+- `tests/test_invariants.py` — 10 invariant tests (all passing).
+- `outputs/scenario_summary.csv` — milestone-year headline view.
+- `outputs/scenario_summary_full.csv` — full annual view across all 54 runs.
+- `outputs/reform_menu.csv` — reform candidate list.
+- `outputs/tornado.csv` — OAT sensitivity results.
+- `outputs/charts/*.png` — 23 charts.
+- `outputs/red_team_memo.md` — 30-point critique.
+- `memo.md` — this document.
+
+### A.5. How to reproduce
+
+```bash
+cd la-county-maximum-statutory-abundance-model
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+python -m src.run_model
+pytest tests/
+```
+
+All 54 runs + sensitivity tornado + charts + reform menu regenerate from JSON parameters in under 5 seconds. Edit `data/scenario_parameters.json` to test alternative parameter values; re-run to see how outcomes shift.
+
+---
+
+**Final word.** This model is not a forecast. It is a structured way to think about which constraints bind LA County's housing future under various assumptions about what the California Legislature, the courts, the utilities, the construction industry, the capital markets, and the political coalition will and will not do over the next twenty years. The single most defensible takeaway is that **legal authority is the easiest of the binding constraints to fix, and the least determinative of outcomes once fixed.** California can pass the Maximum Statutory Abundance package and still fail to build, if the institutions and physical infrastructure required to deliver units do not also receive sustained legislative, fiscal, and political investment. Conversely, even imperfect legal reform — with a good utility track and serious HCD enforcement — can deliver a million net new units, modest rent relief, real welfare gains, and a fiscal dividend large enough to be politically self-sustaining. The question is which path the state actually walks.
+
+— *End of memo*
+
